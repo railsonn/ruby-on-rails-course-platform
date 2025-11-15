@@ -18,6 +18,8 @@ gem "stimulus-rails"
 gem "jbuilder"
 # haml rails
 gem "haml-rails"
+# simple form
+gem 'simple_form'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
