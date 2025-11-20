@@ -1,4 +1,3 @@
-
 %nav.navbar.navbar-expand-lg.bg-body-tertiary
   .container-fluid
     %a.navbar-brand{href: "#"} Navbar
@@ -27,14 +26,34 @@
       %form.d-flex{role: "search"}
         %input.form-control.me-2{"aria-label" => "Search", placeholder: "Search", type: "search"}/
         %button.btn.btn-outline-success{type: "submit"} Search
+.container-fluid
 
+  %h1
+    hello world
+    
+  = link_to "Landing Page", static_pages_pivacy_policy_path
+  = link_to "home", home_index_path
 
+%h1
+  Example heading
+  %span.badge.text-bg-secondary New
+%h2
+  Example heading
+  %span.badge.text-bg-secondary New
+%h3
+  Example heading
+  %span.badge.text-bg-secondary New
+%h4
+  Example heading
+  %span.badge.text-bg-secondary New
+%h5
+  Example heading
+  %span.badge.text-bg-secondary New
+%h6
+  Example heading
+  %span.badge.text-bg-secondary New
+%button.btn.btn-primary{type: "button"}
+  Notifications
+  %span.badge.text-bg-secondary 4
 
-
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml dsfas
-
-
-= link_to courses_path, class: 'btn btn-success' do
-  .fa.fa-book
-  Course
+  

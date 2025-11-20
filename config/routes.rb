@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root "home#index"
-  get "static_pages/landing_page"
+  resources :courses
+  get "home/index"
+  root "static_pages#landing_page"
   get "static_pages/pivacy_policy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
