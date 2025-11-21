@@ -1,5 +1,7 @@
 %p{style: "color: green"}= notice
 
+
+
 - content_for :title, "Courses"
 
 %h1 Courses
@@ -7,9 +9,6 @@ Course:
 = @quant
 
 %div{id: "courses"}
-  - @courses.each do |course|
-    = render course
-    %p
-      = link_to "Show this course", course
+  = render "course"
 
 = link_to "New course", new_course_path

@@ -1,11 +1,18 @@
-%div{id: dom_id(course)}
-  %p
-    %strong Title:
-    = course.title
-    = course.user
+%table.table.table-striped
+  %thead
+    %tr
+      %th ID
+      %th Título
+      %th Descrição
+      %th Ações
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %td= course.id
+        %td= course.title
+        %td= truncate(course.description.body.to_plain_text, length: 50)
+        %td
 
-  %p
-    %strong Description:
-    = course.description
-    = course.id
-
+          = link_to "Mostrar", course, class: "btn btn-sm btn-primary"
+          = link_to "Editar", edit_course_path(course), class: "btn btn-sm btn-warning"
+          = link_to "Excluir", course, class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Tem certeza?" }
