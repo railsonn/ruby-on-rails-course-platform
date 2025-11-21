@@ -23,8 +23,8 @@
               %a.dropdown-item{href: "#"} Something else here
         %li.nav-item
           %a.nav-link.disabled{"aria-disabled" => "true"} Disabled
-      %form.d-flex{role: "search"}
-        %input.form-control.me-2{"aria-label" => "Search", placeholder: "Search", type: "search"}/
+      %form.d-flex{role: "search", action: courses_path, method: :get}
+        %input.form-control.me-2{"aria-label" => "Search", placeholder: "Search", type: "search", name: "q"}/
         %button.btn.btn-outline-success{type: "submit"} Search
 
 

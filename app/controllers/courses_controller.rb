@@ -5,6 +5,12 @@ class CoursesController < ApplicationController
   def index
     @courses = Course.all
     @quant = @courses.count
+
+    if params[:q].present?
+      @courses = @courses.where("title ILIKE ?", "%#{params[:q]}%")
+    else
+      @courses = Course.all
+    end
   end
 
   # GET /courses/1 or /courses/1.json
