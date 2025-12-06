@@ -10,7 +10,7 @@
       <!-- LINKS PADRÃO -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <%= link_to 'Home', home_index_path, class: 'nav-link active'  %>
         </li>
         <li class="nav-item">
           <%= link_to 'Courses', courses_path(@course), class: 'nav-link active' %>
