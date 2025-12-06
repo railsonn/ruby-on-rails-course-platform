@@ -1,12 +1,7 @@
 - content_for :title, "Editing course"
 
-%h1 Editing course
-
-= render "form", course: @course
-
-%br
-
-%div
-  = link_to "Show this course", @course
-  |
-  = link_to "Back to courses", courses_path
+.card
+  .card-header
+    %h1 Editing course
+  .card-body
+    = render 'form'
