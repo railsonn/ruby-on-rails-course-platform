@@ -3,18 +3,19 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    @courses = Course.all
-    @quant = @courses.count
+    @course = Course.all
+    @quant = @course.count
 
     if params[:q].present?
-      @courses = @courses.where("title ILIKE ?", "%#{params[:q]}%")
+      @course = @courses.where("title ILIKE ?", "%#{params[:q]}%")
     else
-      @courses = Course.all
+      @course = Course.all
     end
   end
 
   # GET /courses/1 or /courses/1.json
   def show
+    @course = Course.find(params[:id])
   end
 
   # GET /courses/new

@@ -9,6 +9,6 @@ Course:
 = @quant
 
 %div{id: "courses"}
-  = render "course"
+  - @course.each do |course|
+    = render "course", course: course
 
-= link_to "New course", new_course_path

@@ -1,11 +1,9 @@
-= render 'courses/course', course: @course
-
 %p{style: "color: green"}= notice
 
-= render @course
+= link_to 'Courses', courses_path
 
-%div
-  = link_to "Edit this course", edit_course_path(@course)
-  |
-  = link_to "Back to courses", courses_path
+\/
+= link_to @course.title, course_path(@course)
+%p
+= render 'courses/course', course: @course
 
