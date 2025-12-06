@@ -1,3 +1,8 @@
+
+
+
+
+
 .jumbotron
   .display-4
     what do you want learn today?
@@ -12,10 +17,53 @@
               Pesquisar
 
 
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml dsfas
+.card-group
+  .card.card-body
+    %h1
+      .fa.fa-graduation-cap
+    = Course.count
+    online course
+    .row
+    Explore a variety of fresh topics
+  .card.card-body
+    %h1
+      .fa.fa-chalkboard-teacher
+      /.fa.fa-brain
+    = Course.distinct.count(:user_id)
+    expert instructors
+    .row
+    Find the right instructor for you
+  .card.card-body
+    %h1
+      .fa.fa-user-graduate
+    = User.count
+    active learners
+    .row
+    Join the knowledge sharing community
+  .card.card-body
+    %h1
+      .fa.fa-infinity
+    Lifetime access
+    .row
+    Learn on your schedule
 
+%hr
+%h2
+  Popular courses
+.card-columns
+  - @course.each do |course|
+    = render 'courses/course', course: course
 
-= link_to courses_path, class: 'btn btn-success' do
-  .fa.fa-book
-  Course
+%hr
+%h2 
+  Top rated courses
+.card-columns
+  - @course.each do |course|
+    = render 'courses/course', course: course
+
+%hr
+%h2 
+  Latest courses
+.card-columns
+  - @latest_couses.each do |course|
+    = render 'courses/course', course: course
