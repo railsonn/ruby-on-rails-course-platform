@@ -1,6 +1,7 @@
 
 .jumbotron.bg-light.p-5.mb-5.shadow-sm.rounded
   .display-4.text-center.mb-4.text-primary
+    %span.fa.fa-graduation-cap.mr-2
     what do you want learn today?
 
   .p-4.d-flex.justify-content-center
@@ -10,8 +11,11 @@
           = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search for a course...", class: 'form-control form-control-lg border-0'
           %span.input-group-append
             %button.btn.btn-primary.btn-lg{:type => "submit"}
-              %span.fa.fa-search{"aria-hidden" => "true"}
+              %span.fa.fa-search.mr-2{"aria-hidden" => "true"}
               Pesquisar
+              %i.fa.fa-star
+
+
 
 
 .card-group.mb-5
