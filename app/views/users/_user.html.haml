@@ -1,23 +1,32 @@
-.card
-  .card-header
-    .fa.fa-user
+.card.shadow-lg.p-4.mt-4.border-0{ style: "background: linear-gradient(135deg, #6f42c1, #0d6efd); color: white; border-radius: 18px;" }
+
+  .card-header.border-0{ style: "font-size: 1.2rem; font-weight: bold; background: rgba(255,255,255,0.1); border-radius: 12px;" }
+    %i.fa.fa-user.me-2
     = user.email
-  .card-footer
-    Signed up
-    = time_ago_in_words(user.created_at)
+
+  .card-footer.mt-3.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 12px;" }
+    %span.fw-bold.me-1 Signed up:
+    %span= time_ago_in_words(user.created_at)
     ago
-  .card-footer
-    = 'sign_in_count'.humanize
-    = user.sign_in_count
+
+  .card-footer.mt-3.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 12px;" }
+
+    .row.mb-2
+      .col-6.fw-bold= 'sign_in_count'.humanize
+      .col-6.text-end= user.sign_in_count
+
+    .row.mb-2
+      .col-6.fw-bold= 'current_sign_in_at'.humanize
+      .col-6.text-end= user.current_sign_in_at
+
+    .row.mb-2
+      .col-6.fw-bold= 'last_sign_in_at'.humanize
+      .col-6.text-end= user.last_sign_in_at
+
+    .row.mb-2
+      .col-6.fw-bold= 'current_sign_in_ip'.humanize
+      .col-6.text-end= user.current_sign_in_ip
+
     .row
-    = 'current_sign_in_at'.humanize
-    = user.current_sign_in_at
-    .row
-    = 'last_sign_in_at'.humanize
-    = user.last_sign_in_at
-    .row
-    = 'current_sign_in_ip'.humanize
-    = user.current_sign_in_ip
-    .row
-    = 'last_sign_in_ip'.humanize
-    = user.last_sign_in_ip
+      .col-6.fw-bold= 'last_sign_in_ip'.humanize
+      .col-6.text-end= user.last_sign_in_ip
