@@ -1,69 +1,75 @@
 
-
-
-
-
-.jumbotron
-  .display-4
+.jumbotron.bg-light.p-5.mb-5.shadow-sm.rounded
+  .display-4.text-center.mb-4.text-primary
     what do you want learn today?
-  .p-4
-    .form-inline.my-2.my-lg-0
-      = form_tag(courses_path, method: :get) do
-        .input-group
-          = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+
+  .p-4.d-flex.justify-content-center
+    .form-inline.my-2.my-lg-0.w-75
+      = form_tag(courses_path, method: :get, class: "w-100") do
+        .input-group.w-100.shadow-sm
+          = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search for a course...", class: 'form-control form-control-lg border-0'
           %span.input-group-append
-            %button.btn.btn-primary.btn-sm{:type => "submit"}
+            %button.btn.btn-primary.btn-lg{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}
               Pesquisar
 
 
-.card-group
-  .card.card-body
-    %h1
+.card-group.mb-5
+  .card.card-body.text-center.shadow-sm.border-0.p-4
+    %h1.text-primary.mb-2
       .fa.fa-graduation-cap
-    = Course.count
-    online course
-    .row
-    Explore a variety of fresh topics
-  .card.card-body
-    %h1
+    %h4.font-weight-bold= Course.count
+    %small.text-muted online course
+    .row.mt-2
+    %p.text-muted Explore a variety of fresh topics
+
+  .card.card-body.text-center.shadow-sm.border-0.p-4
+    %h1.text-success.mb-2
       .fa.fa-chalkboard-teacher
-      /.fa.fa-brain
-    = Course.distinct.count(:user_id)
-    expert instructors
-    .row
-    Find the right instructor for you
-  .card.card-body
-    %h1
+    %h4.font-weight-bold= Course.distinct.count(:user_id)
+    %small.text-muted expert instructors
+    .row.mt-2
+    %p.text-muted Find the right instructor for you
+
+  .card.card-body.text-center.shadow-sm.border-0.p-4
+    %h1.text-info.mb-2
       .fa.fa-user-graduate
-    = User.count
-    active learners
-    .row
-    Join the knowledge sharing community
-  .card.card-body
-    %h1
+    %h4.font-weight-bold= User.count
+    %small.text-muted active learners
+    .row.mt-2
+    %p.text-muted Join the knowledge sharing community
+
+  .card.card-body.text-center.shadow-sm.border-0.p-4
+    %h1.text-warning.mb-2
       .fa.fa-infinity
-    Lifetime access
-    .row
-    Learn on your schedule
+    %h4.font-weight-bold Lifetime access
+    .row.mt-2
+    %p.text-muted Learn on your schedule
 
-%hr
-%h2
+
+%hr.mt-5
+%h2.text-primary.mb-4.font-weight-bold
   Popular courses
+
 .card-columns
   - @course.each do |course|
     = render 'courses/course', course: course
 
-%hr
-%h2 
+
+%hr.mt-5
+%h2.text-primary.mb-4.font-weight-bold 
   Top rated courses
+
 .card-columns
   - @course.each do |course|
     = render 'courses/course', course: course
 
-%hr
-%h2 
+
+%hr.mt-5
+%h2.text-primary.mb-4.font-weight-bold 
   Latest courses
+
 .card-columns
   - @latest_couses.each do |course|
     = render 'courses/course', course: course
+

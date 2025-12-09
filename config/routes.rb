@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  get "users/index"
+  get "users/user"
   devise_for :users
   resources :courses
+  resources :users
   get "home/index"
   root "static_pages#landing_page"
   get "static_pages/pivacy_policy"
