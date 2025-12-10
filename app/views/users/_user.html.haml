@@ -1,29 +1,29 @@
-.card.shadow-lg.p-4.mt-4.border-0{ style: "background: linear-gradient(135deg, #6f42c1, #0d6efd); color: white; border-radius: 18px;" }
+.card.shadow-lg.p-3.mt-3.mx-auto.border-0{ style: "max-width: 600px; background: linear-gradient(135deg, #6f42c1, #0d6efd); color: white; border-radius: 16px;" }
 
-  .card-header.border-0{ style: "font-size: 1.2rem; font-weight: bold; background: rgba(255,255,255,0.1); border-radius: 12px;" }
+  .card-header.border-0{ style: "font-size: 1rem; font-weight: bold; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 12px;" }
     %i.fa.fa-user.me-2
     = user.email
 
-  .card-footer.mt-3.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 12px;" }
+  .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
     %span.fw-bold.me-1 Signed up:
     %span= time_ago_in_words(user.created_at)
     ago
 
-  .card-footer.mt-3.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 12px;" }
+  .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
 
-    .row.mb-2
+    .row.mb-1
       .col-6.fw-bold= 'sign_in_count'.humanize
       .col-6.text-end= user.sign_in_count
 
-    .row.mb-2
+    .row.mb-1
       .col-6.fw-bold= 'current_sign_in_at'.humanize
       .col-6.text-end= user.current_sign_in_at
 
-    .row.mb-2
+    .row.mb-1
       .col-6.fw-bold= 'last_sign_in_at'.humanize
       .col-6.text-end= user.last_sign_in_at
 
-    .row.mb-2
+    .row.mb-1
       .col-6.fw-bold= 'current_sign_in_ip'.humanize
       .col-6.text-end= user.current_sign_in_ip
 
@@ -31,11 +31,9 @@
       .col-6.fw-bold= 'last_sign_in_ip'.humanize
       .col-6.text-end= user.last_sign_in_ip
 
-
-.card-footer
-  Confirmed email?
-  - if user.confirmed_at.present?
-    %span.badge.bg-success Yes
-  - else
-    %span.badge.bg-danger No
-
+  .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
+    %span.fw-bold.me-1 Confirmed email?
+    - if user.confirmed_at.present?
+      %span.badge.bg-success Yes
+    - else
+      %span.badge.bg-danger No
