@@ -30,3 +30,12 @@
     .row
       .col-6.fw-bold= 'last_sign_in_ip'.humanize
       .col-6.text-end= user.last_sign_in_ip
+
+
+.card-footer
+  Confirmed email?
+  - if user.confirmed_at.present?
+    %span.badge.bg-success Yes
+  - else
+    %span.badge.bg-danger No
+
