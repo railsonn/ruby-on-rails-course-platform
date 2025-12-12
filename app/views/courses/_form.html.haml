@@ -17,9 +17,9 @@
     = form.label :short_description, class: "form-label fw-bold"
     = form.text_field :short_description, class: "form-control shadow-sm", rows: 4
     = form.label :language, class: "form-label fw-bold"
-    = form.text_field :language, class: "form-control shadow-sm", rows: 4
+    = form.select :language, [ "english", "polish", "russia"], {}, class: "form-control shadow-sm", rows: 4
     = form.label :level, class: "form-label fw-bold"
-    = form.text_field :level, class: "form-control shadow-sm", rows: 4
+    = form.select :level, ["begginer", "intermediario", "advanced"], {}, class: "form-control shadow-sm"
     = form.label :price, class: "form-label fw-bold"
     = form.text_field :price, class: "form-control shadow-sm", rows: 4
 
