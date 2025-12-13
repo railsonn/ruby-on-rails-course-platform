@@ -1,3 +1,31 @@
-.card-columns
-  - @users.each do |user|
-    = render 'users/user', user: user
+.container.mt-4
+  .row.mb-3
+    .col-12
+      .card.shadow-sm
+        .card-body
+          = search_form_for @q, url: users_path, method: :get, class: 'form-inline flex-wrap' do |f|
+            .form-group.mb-2.mr-2
+              = f.search_field :email_cont,
+                class: 'form-control',
+                placeholder: 'Email'
+
+            .form-group.mb-2.mr-2
+              = f.search_field :sign_in_count_eq,
+                class: 'form-control',
+                placeholder: 'Sign in count'
+
+            .form-group.mb-2.mr-2
+              = f.search_field :email_or_sign_in_count_eq,
+                class: 'form-control',
+                placeholder: 'Email ou Sign in count'
+
+            .form-group.mb-2
+              = f.submit 'Buscar', class: 'btn btn-primary mr-2'
+
+            = link_to 'Refresh', users_path, class: 'btn btn-outline-secondary mb-2'
+
+  .row
+    .col-12
+      .card-columns
+        - @users.each do |user|
+          = render 'users/user', user: user

@@ -28,6 +28,8 @@ gem 'devise'
 gem 'friendly_id', '~> 5.5.0'
 # font-awesome-sass
 gem 'font-awesome-sass', '~> 6.0.0'
+#  gem ransack
+gem 'ransack'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
