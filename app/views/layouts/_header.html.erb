@@ -24,35 +24,36 @@
       </ul>
 
       <!-- BARRA DE BUSCA (à esquerda do dropdown) -->
-      <form class="d-flex me-3" role="search">
+      <!-- <form class="d-flex me-3" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </form> -->
 
-<!-- SEARCH IN NAVBAR -->
-<%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
-  <div class="input-group">
-    <%= f.search_field :title_cont,
-      class: "form-control-sm",
-      style: "float: left; width: 150px;",
-      placeholder: "Find a course",
-      autocomplete: "off" %>
+      <!-- SEARCH IN NAVBAR -->
+      <% if defined?(@ransack_courses) && @ransack_courses.present? %>
+        <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
+          <div class="input-group">
+            <%= f.search_field :title_cont,
+              class: "form-control-sm",
+              style: "float: left; width: 150px;",
+              placeholder: "Find a course",
+              autocomplete: "off" %>
 
-    <span class="input-group-append">
-      <button type="submit" class="btn btn-primary btn-sm">
-        <span class="fa fa-search" aria-hidden="true"></span>
-      </button>
-    </span>
-  </div>
-<% end %>
+            <span class="input-group-append">
+              <button type="submit" class="btn btn-primary btn-sm">
+                <span aria-hidden="true">Search</span>
+              </button>
+            </span>
+          </div>
+        <% end %>
 
-<ul class="navbar-nav mr-right">
-  <li class="nav-item <%= 'active font-weight-bold' if current_page?(root_path) %>">
-    <%= link_to root_path, class: "nav-link" do %>
-      Home
-    <% end %>
-  </li>
-</ul>
+        <ul class="navbar-nav mr-right">
+          <li class="nav-item <%= 'active font-weight-bold' if current_page?(root_path) %>">
+            <%= link_to root_path, class: "nav-link" do %>
+              Home
+            <% end %>
+          </li>
+        </ul>
 
 
       <!-- DROPDOWN DO USUÁRIO (email) -->
@@ -72,6 +73,7 @@
             </ul>
           </li>
         </ul>
+      <% end %>
 
       <% else %>
         <!-- QUANDO NÃO ESTÁ LOGADO -->
