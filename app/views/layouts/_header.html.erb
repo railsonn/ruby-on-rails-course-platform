@@ -21,6 +21,9 @@
         <li class="nav-item" if current_page?(users_path)>
           <%= link_to 'Users', users_path, class: 'nav-link active' %>
         </li>
+        <li class="nav-item" if current_page?(home_activity_path)>
+          <%= link_to 'Activity', home_activity_path, class: 'nav-link active' %>
+        </li>
       </ul>
 
       <!-- BARRA DE BUSCA (à esquerda do dropdown) -->

@@ -1,33 +1,36 @@
 class Course < ApplicationRecord
-    validates :title, :short_description, :language, :price, :level, presence: true
-    validates :description, presence: true, length: { minimum: 5 }
+  validates :title, :short_description, :language, :price, :level, presence: true
+  validates :description, presence: true, length: { minimum: 5 }
 
-    belongs_to :user
+  belongs_to :user
 
-    def to_s
-        title
-    end
-    has_rich_text :description
+  def to_s
+    title
+  end
+  has_rich_text :description
 
-    extend FriendlyId
-    friendly_id :title, use: :slugged
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 
-    LANGUAGES = [:"English", :"Russian", :"Polish", :"Spanish"]
-    def self.languages
-      LANGUAGES.map { |language| [language, language] }
-    end
+  LANGUAGES = [:"English", :"Russian", :"Polish", :"Spanish"]
+  def self.languages
+    LANGUAGES.map { |language| [language, language] }
+  end
 
-    LEVELS = [:"Beginner", :"Intermediate", :"Advanced"]
-    def self.levels
-      LEVELS.map { |level| [level, level] }
-    end
+  LEVELS = [:"Beginner", :"Intermediate", :"Advanced"]
+  def self.levels
+    LEVELS.map { |level| [level, level] }
+  end
 
-    def self.ransackable_attributes(auth_object = nil)
-      ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at", "user_id"]
-    end
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at", "user_id"]
+  end
 
-    def self.ransackable_associations(auth_object = nil)
-      ["rich_text_description", "user"]
-    end
+  def self.ransackable_associations(auth_object = nil)
+    ["rich_text_description", "user"]
+  end
 
+
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
 end

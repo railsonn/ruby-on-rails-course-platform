@@ -1,8 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  include PublicActivity::StoreController #save current_user using gem public_activity
+  
   before_action :set_global_variables, if: :user_signed_in?
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
+
 
 
   def set_global_variables
