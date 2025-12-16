@@ -29,6 +29,32 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
 
+<!-- SEARCH IN NAVBAR -->
+<%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
+  <div class="input-group">
+    <%= f.search_field :title_cont,
+      class: "form-control-sm",
+      style: "float: left; width: 150px;",
+      placeholder: "Find a course",
+      autocomplete: "off" %>
+
+    <span class="input-group-append">
+      <button type="submit" class="btn btn-primary btn-sm">
+        <span class="fa fa-search" aria-hidden="true"></span>
+      </button>
+    </span>
+  </div>
+<% end %>
+
+<ul class="navbar-nav mr-right">
+  <li class="nav-item <%= 'active font-weight-bold' if current_page?(root_path) %>">
+    <%= link_to root_path, class: "nav-link" do %>
+      Home
+    <% end %>
+  </li>
+</ul>
+
+
       <!-- DROPDOWN DO USUÁRIO (email) -->
       <% if current_user %>
         <ul class="navbar-nav">
