@@ -25,7 +25,7 @@ gem 'faker'
 # devise
 gem 'devise'
 # friendly_id
-gem 'friendly_id', '~> 5.5.0'
+gem 'friendly_id', '~> 5.6.0'
 # font-awesome-sass
 gem 'font-awesome-sass', '~> 6.0.0'
 #  gem ransack
