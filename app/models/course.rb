@@ -14,20 +14,20 @@ class Course < ApplicationRecord
 
     LANGUAGES = [:"English", :"Russian", :"Polish", :"Spanish"]
     def self.languages
-        LANGUAGES.map { |language| [language, language] }
+      LANGUAGES.map { |language| [language, language] }
     end
 
     LEVELS = [:"Beginner", :"Intermediate", :"Advanced"]
     def self.levels
-        LEVELS.map { |level| [level, level] }
+      LEVELS.map { |level| [level, level] }
     end
 
     def self.ransackable_attributes(auth_object = nil)
       ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at", "user_id"]
     end
 
-      def self.ransackable_associations(auth_object = nil)
-    ["rich_text_description", "user"]
-  end
+    def self.ransackable_associations(auth_object = nil)
+      ["rich_text_description", "user"]
+    end
 
 end

@@ -3,14 +3,13 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    @course = Course.all
-    @quant = @course.count
+    @courses = Course.all
+    @quant = @courses.count
 
-    if params[:q].present?
-      @course = @courses.where("title ILIKE ?", "%#{params[:q]}%")
+    if params[:title]
+      @courses = Course.where('title ILIKE ?', "%#{params[:title]}%") #case-insensitive
     else
       @courses = Course.all
-      # @courses = Course.all
       @q = Course.ransack(params[:q])
       @courses = @q.result.includes(:user)
     end

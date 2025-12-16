@@ -3,7 +3,7 @@
 
     .card-header.text-center
       .fa.fa-book
-      = link_to course.title, course_path(@course)
+      = link_to course.title, courses_path(@courses)
 
     .card-body
       = course.description
@@ -16,10 +16,10 @@
       .row
         .col-md-6
           .fa.fa-signal
-          = course.level
+          = course.language
         .col-md-6.text-right
           .fa.fa-envelope
-          = course.user.email
+          = course.level
 
 
 
@@ -30,7 +30,7 @@
           = course.created_at.strftime('%d-%b-%Y')
         .col-md-6.text-right
           .fa.fa-chalkboard-teacher
-          = course.user
+          = course.user.username
 
     .card-footer.text-center
       = link_to 'Show', course, class: 'btn btn-sm btn-primary'
