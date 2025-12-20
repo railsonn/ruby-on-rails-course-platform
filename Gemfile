@@ -32,6 +32,8 @@ gem 'font-awesome-sass', '~> 6.0.0'
 gem 'ransack'
 # gem public_activity
 gem 'public_activity'
+# gem rolify
+gem "rolify"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
