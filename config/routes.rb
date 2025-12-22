@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   get "users/user"
   devise_for :users
   resources :courses
-  resources :users
+  resources :users, only: [:index]
+  resources :users, only: [:index, :edit, :show, :update]
   get "home/index"
   get "home/activity"
   root "static_pages#landing_page"
