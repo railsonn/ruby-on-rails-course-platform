@@ -9,10 +9,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    authorize @user
   end
 
   def update
+    authorize @user
     if @user.update(user_params)
       redirect_to users_path(@user), notice: "User updated successfully."
     else
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   private
+  
   def set_user
     @user = User.find(params[:id])
   end
