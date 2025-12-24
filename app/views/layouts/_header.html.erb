@@ -8,85 +8,85 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- LINKS PADRÃO -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item" if current_page?(root_path)>
-          <%= link_to 'Home', home_index_path, class: 'nav-link active'  %>
-        </li>
-        <li class="nav-item" if current_page?(courses_path)>
-          <%= link_to 'Courses', courses_path(@course), class: 'nav-link active' %>
-        </li>
-        <li class="nav-item" if current_page?(new_course_path)>
-          <%= link_to 'New course', new_course_path, class: 'nav-link active' %>
-        </li>
-        <li class="nav-item" if current_page?(users_path)>
-          <%= link_to 'Users', users_path, class: 'nav-link active' %>
-        </li>
-      </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" if current_page?(root_path)>
+            <%= link_to 'Home', home_index_path, class: 'nav-link active'  %>
+          </li>
+          <li class="nav-item" if current_page?(courses_path)>
+            <%= link_to 'Courses', courses_path(@course), class: 'nav-link active' %>
+          </li>
+          <li class="nav-item" if current_page?(new_course_path)>
+            <%= link_to 'New course', new_course_path, class: 'nav-link active' %>
+          </li>
+          <li class="nav-item" if current_page?(users_path)>
+            <%= link_to 'Users', users_path, class: 'nav-link active' %>
+          </li>
+        </ul>
+  
+        <!-- BARRA DE BUSCA (à esquerda do dropdown) -->
+        <!-- <form class="d-flex me-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
 
-      <!-- BARRA DE BUSCA (à esquerda do dropdown) -->
-      <!-- <form class="d-flex me-3" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
+        <!-- SEARCH IN NAVBAR -->
+        <% if defined?(@ransack_courses) && @ransack_courses.present? %>
+          <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
+            <div class="input-group">
+              <%= f.search_field :title_cont,
+                class: "form-control-sm",
+                style: "float: left; width: 150px;",
+                placeholder: "Find a course",
+                autocomplete: "off" %>
 
-      <!-- SEARCH IN NAVBAR -->
-      <% if defined?(@ransack_courses) && @ransack_courses.present? %>
-        <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
-          <div class="input-group">
-            <%= f.search_field :title_cont,
-              class: "form-control-sm",
-              style: "float: left; width: 150px;",
-              placeholder: "Find a course",
-              autocomplete: "off" %>
+              <span class="input-group-append">
+                <button type="submit" class="btn btn-primary btn-sm">
+                  <span aria-hidden="true">Search</span>
+                </button>
+              </span>
+            </div>
+          <% end %>
 
-            <span class="input-group-append">
-              <button type="submit" class="btn btn-primary btn-sm">
-                <span aria-hidden="true">Search</span>
-              </button>
-            </span>
-          </div>
+          <ul class="navbar-nav mr-right">
+            <li class="nav-item" if current_page?(home_activity_path)>
+              <%= link_to 'Activity', home_activity_path, class: 'nav-link active' %>
+            </li>
+            <li class="nav-item <%= 'active font-weight-bold' if current_page?(root_path) %>">
+              <%= link_to root_path, class: "nav-link" do %>
+                Home
+              <% end %>
+            </li>
+          </ul>
+
+
+        <!-- DROPDOWN DO USUÁRIO (email) -->
+        <% if current_user %>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= current_user.email %>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <%= link_to "Minha conta", edit_user_registration_path, class: "dropdown-item" %>
+                </li>
+                <li>
+                  <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" %>
+                </li>
+              </ul>
+            </li>
+          </ul>
         <% end %>
 
-        <ul class="navbar-nav mr-right">
-          <li class="nav-item" if current_page?(home_activity_path)>
-            <%= link_to 'Activity', home_activity_path, class: 'nav-link active' %>
-          </li>
-          <li class="nav-item <%= 'active font-weight-bold' if current_page?(root_path) %>">
-            <%= link_to root_path, class: "nav-link" do %>
-              Home
-            <% end %>
-          </li>
-        </ul>
+        <% else %>
+          <!-- QUANDO NÃO ESTÁ LOGADO -->
+          <div class="d-flex">
+            <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-primary me-2" %>
+            <%= link_to "Register", new_user_registration_path, class: "btn btn-primary" %>
+          </div>
 
+        <% end %>
 
-      <!-- DROPDOWN DO USUÁRIO (email) -->
-      <% if current_user %>
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= current_user.email %>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <%= link_to "Minha conta", edit_user_registration_path, class: "dropdown-item" %>
-              </li>
-              <li>
-                <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" %>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      <% end %>
-
-      <% else %>
-        <!-- QUANDO NÃO ESTÁ LOGADO -->
-        <div class="d-flex">
-          <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-primary me-2" %>
-          <%= link_to "Register", new_user_registration_path, class: "btn btn-primary" %>
-        </div>
-
-      <% end %>
-
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
