@@ -2,7 +2,12 @@
 
   .card-header.border-0{ style: "font-size: 1rem; font-weight: bold; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 12px;" }
     %i.fa.fa-user.me-2
+    - if user.online?
+      online
+    - else 
+      offline
     = link_to user.email, user_path(user)
+
 
   .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
     %span.fw-bold.me-1 Signed up:
