@@ -7,7 +7,20 @@ class CoursePolicy < ApplicationPolicy
 
 
   def edit?
-    @user.has_role?(:admin)
+    @user.has_role?(:admin)   
+    # debugg para saber como o record compara o user atual com o que criou o course
+    # Rails.logger.debug "USER: #{user.inspect}"
+    # Rails.logger.debug "RECORD USER: #{record.user.inspect}"
+    # Rails.logger.debug "IGUAL? #{record.user == user}"
+    record.user == user
+  end
+
+  def update?
+    edit?
+  end
+
+  def destroy?
+    edit?
   end
 
   class Scope < ApplicationPolicy::Scope
