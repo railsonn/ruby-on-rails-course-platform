@@ -1,16 +1,31 @@
 %h3
   .text-center
+    %i.bi.bi-activity.mr-2
     Activity
     .badge.badge-info
+      %i.bi.bi-list-ul.mr-1
       = @activities.count
 
 %ul{ class: "list-group" }
   - @activities.each do |activity|
     %li{ class: "list-group-item" }
+      %i.bi.bi-hash.mr-1
       = activity.id
+      |
+      %i.bi.bi-diagram-3.mr-1
       = activity.trackable_type
+      |
+      %i.bi.bi-link-45deg.mr-1
       = activity.trackable.id
+      |
+      %i.bi.bi-box-arrow-up-right.mr-1
       = link_to activity.trackable, activity.trackable
+      |
+      %i.bi.bi-tag.mr-1
       = activity.key
+      |
+      %i.bi.bi-braces.mr-1
       = activity.parameters
+      |
+      %i.bi.bi-person-circle.mr-1
       = activity.owner

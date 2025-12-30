@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lessons
   get "users/index"
   get "users/user"
   devise_for :users

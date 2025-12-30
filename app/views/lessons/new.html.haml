@@ -1,0 +1,10 @@
+- content_for :title, "New lesson"
+
+%h1 New lesson
+
+= render "form", lesson: @lesson
+
+%br
+
+%div
+  = link_to "Back to lessons", lessons_path

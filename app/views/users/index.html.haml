@@ -1,7 +1,9 @@
 %h3
   .text-center
+    %i.bi.bi-people-fill.mr-2
     User
     .badge.badge-info
+      %i.bi.bi-hash.mr-1
       = @users.count
 
 .container.mt-4
@@ -28,7 +30,9 @@
             .form-group.mb-2
               = f.submit 'Buscar', class: 'btn btn-primary mr-2'
 
-            = link_to 'Refresh', users_path, class: 'btn btn-outline-secondary mb-2'
+            = link_to users_path, class: 'btn btn-outline-secondary mb-2' do
+              %i.bi.bi-arrow-clockwise.mr-1
+              Refresh
 
   .row
     .col-12

@@ -1,7 +1,6 @@
-
 .jumbotron.bg-light.p-5.mb-5.shadow-sm.rounded
   .display-4.text-center.mb-4.text-primary
-    %span.fa.fa-graduation-cap.mr-2
+    %i.bi.bi-mortarboard-fill.mr-2
     what do you want learn today?
 
   .p-4.d-flex.justify-content-center
@@ -11,30 +10,14 @@
           = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search for a course...", class: 'form-control form-control-lg border-0'
           %span.input-group-append
             %button.btn.btn-primary.btn-lg{:type => "submit"}
-              %span.fa.fa-search.mr-2{"aria-hidden" => "true"}
+              %i.bi.bi-search.mr-2{"aria-hidden" => "true"}
               Pesquisar
-              %i.fa.fa-star
-
-    / SEARCH IN NAVBAR
-    - if current_user
-      = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
-        .input-group
-          = f.search_field :title_cont,          |
-            class: "form-control-sm",            |
-            style: "float: left; width: 150px;", |
-            placeholder: "Find a course",        |
-            autocomplete: "off"                  |
-          %span.input-group-append
-            %button.btn.btn-primary.btn-sm{:type => "submit"}
-              %span{"aria-hidden" => "true"} Search
-
-
-
+              %i.bi.bi-star-fill
 
 .card-group.mb-5
   .card.card-body.text-center.shadow-sm.border-0.p-4
     %h1.text-primary.mb-2
-      .fa.fa-graduation-cap
+      %i.bi.bi-mortarboard-fill
     %h4.font-weight-bold= Course.count
     %small.text-muted online course
     .row.mt-2
@@ -42,7 +25,7 @@
 
   .card.card-body.text-center.shadow-sm.border-0.p-4
     %h1.text-success.mb-2
-      .fa.fa-chalkboard-teacher
+      %i.bi.bi-person-workspace
     %h4.font-weight-bold= Course.distinct.count(:user_id)
     %small.text-muted expert instructors
     .row.mt-2
@@ -50,7 +33,7 @@
 
   .card.card-body.text-center.shadow-sm.border-0.p-4
     %h1.text-info.mb-2
-      .fa.fa-user-graduate
+      %i.bi.bi-people-fill
     %h4.font-weight-bold= User.count
     %small.text-muted active learners
     .row.mt-2
@@ -58,35 +41,7 @@
 
   .card.card-body.text-center.shadow-sm.border-0.p-4
     %h1.text-warning.mb-2
-      .fa.fa-infinity
+      %i.bi.bi-infinity
     %h4.font-weight-bold Lifetime access
     .row.mt-2
     %p.text-muted Learn on your schedule
-
-
-%hr.mt-5
-%h2.text-primary.mb-4.font-weight-bold
-  Popular courses
-
-.card-columns
-  - @course.each do |course|
-    = render 'courses/course', course: course
-
-
-%hr.mt-5
-%h2.text-primary.mb-4.font-weight-bold 
-  Top rated courses
-
-.card-columns
-  - @course.each do |course|
-    = render 'courses/course', course: course
-
-
-%hr.mt-5
-%h2.text-primary.mb-4.font-weight-bold 
-  Latest courses
-
-.card-columns
-  - @latest_couses.each do |course|
-    = render 'courses/course', course: course
-

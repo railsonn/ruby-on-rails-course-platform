@@ -2,7 +2,7 @@
   .card.shadow-lg(style="width: 70%;")
 
     .card-header.text-center
-      .fa.fa-book
+      %i.bi.bi-book.me-1
       = link_to course.title, courses_path(@courses)
 
     .card-body
@@ -10,34 +10,39 @@
       %small= simple_format(course.short_description)
 
     .card-footer.text-center
+      %i.bi.bi-currency-dollar.me-1
       = number_to_currency(course.price)
+  
+    .card-footer
+      %i.bi.bi-journal-text.me-1
+      = course.lessons.count
 
     .card-footer
       .row
         .col-md-6
-          .fa.fa-signal
+          %i.bi.bi-signal.me-1
           = course.language
         .col-md-6.text-right
-          .fa.fa-envelope
+          %i.bi.bi-bar-chart.me-1
           = course.level
-
-
 
     .card-footer
       .row
         .col-md-6
-          .far.fa-clock
+          %i.bi.bi-clock.me-1
           = course.created_at.strftime('%d-%b-%Y')
         .col-md-6.text-right
-          .fa.fa-chalkboard-teacher
+          %i.bi.bi-person-workspace.me-1
           = course.user.username
 
     - if current_user
       - if policy(course).edit?
         .card-footer.text-center
-          = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'
-          /- if policy(course).edit?
+          = link_to edit_course_path(course), class: 'btn btn-sm btn-warning' do
+            %i.bi.bi-pencil-square.me-1
+            Edit
           - if course.user_id == current_user.id
-            = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
-          /-  if policy(course).destroy?
-        
+            = link_to course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' do
+              %i.bi.bi-trash.me-1
+              Destroy
+  

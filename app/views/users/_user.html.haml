@@ -1,15 +1,18 @@
 .card.shadow-lg.p-3.mt-3.mx-auto.border-0{ style: "max-width: 600px; background: linear-gradient(135deg, #6f42c1, #0d6efd); color: white; border-radius: 16px;" }
 
   .card-header.border-0{ style: "font-size: 1rem; font-weight: bold; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 12px;" }
-    %i.fa.fa-user.me-2
+    %i.bi.bi-person-circle.me-2
     - if user.online?
+      %i.bi.bi-circle-fill.text-success.me-1
       online
     - else 
+      %i.bi.bi-circle-fill.text-danger.me-1
       offline
     = link_to user.email, user_path(user)
 
 
   .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
+    %i.bi.bi-calendar-check.me-1
     %span.fw-bold.me-1 Signed up:
     %span= time_ago_in_words(user.created_at)
     ago
@@ -17,35 +20,53 @@
   .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
 
     .row.mb-1
-      .col-6.fw-bold= 'sign_in_count'.humanize
+      .col-6.fw-bold
+        %i.bi.bi-box-arrow-in-right.me-1
+        = 'sign_in_count'.humanize
       .col-6.text-end= user.sign_in_count
 
     .row.mb-1
-      .col-6.fw-bold= 'current_sign_in_at'.humanize
+      .col-6.fw-bold
+        %i.bi.bi-clock-history.me-1
+        = 'current_sign_in_at'.humanize
       .col-6.text-end= user.current_sign_in_at
 
     .row.mb-1
-      .col-6.fw-bold= 'last_sign_in_at'.humanize
+      .col-6.fw-bold
+        %i.bi.bi-clock.me-1
+        = 'last_sign_in_at'.humanize
       .col-6.text-end= user.last_sign_in_at
 
     .row.mb-1
-      .col-6.fw-bold= 'current_sign_in_ip'.humanize
+      .col-6.fw-bold
+        %i.bi.bi-pc-display.me-1
+        = 'current_sign_in_ip'.humanize
       .col-6.text-end= user.current_sign_in_ip
 
     .row
-      .col-6.fw-bold= 'last_sign_in_ip'.humanize
+      .col-6.fw-bold
+        %i.bi.bi-hdd-network.me-1
+        = 'last_sign_in_ip'.humanize
       .col-6.text-end= user.last_sign_in_ip
 
   .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
+    %i.bi.bi-patch-check.me-1
     %span.fw-bold.me-1 Confirmed email?
     - if user.confirmed_at.present?
-      %span.badge.bg-success Yes
+      %span.badge.bg-success
+        %i.bi.bi-check-circle.me-1
+        Yes
     - else
-      %span.badge.bg-danger No
+      %span.badge.bg-danger
+        %i.bi.bi-x-circle.me-1
+        No
 
   .card-footer
     - user.roles.each do |role|
-      .badge.badge-info 
+      .badge.badge-info
+        %i.bi.bi-shield-lock.me-1
         = role.name
     - if policy(user).edit?
-      = link_to 'Edit roles', edit_user_path(user), class: 'btn btn-sm btn-warning'
+      = link_to edit_user_path(user), class: 'btn btn-sm btn-warning' do
+        %i.bi.bi-pencil-square.me-1
+        Edit roles
