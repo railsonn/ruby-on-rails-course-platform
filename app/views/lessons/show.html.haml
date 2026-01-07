@@ -1,10 +1,14 @@
-%p{style: "color: green"}= notice
+- if notice
+  %p.alert.alert-success.text-center= notice
 
-= render @lesson
+.container.mt-4
+  .row.justify-content-center
+    .col-md-8
+      = render @lesson
 
-%div
-  = link_to "Edit this lesson", edit_lesson_path(@lesson)
-  |
-  = link_to "Back to lessons", lessons_path
+      .d-flex.justify-content-between.align-items-center.mt-4
+        .btn-group
+          = link_to "Edit this lesson", edit_lesson_path(@lesson), class: "btn btn-outline-primary"
+          = link_to "Back to lessons", lessons_path, class: "btn btn-outline-secondary"
 
-  = button_to "Destroy this lesson", @lesson, method: :delete
+        = button_to "Destroy this lesson", @lesson, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"

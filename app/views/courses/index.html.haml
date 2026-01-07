@@ -11,7 +11,7 @@
         = f.search_field :title_cont, placeholder: 'Title', class: 'form-control form-control-sm'
         = f.label :description
         = f.search_field :short_description_cont, placeholder: 'Description', class: 'form-control form-control-sm'
-        /= f.search_field :language_cont, placeholder: 'Language', class: 'form-control form-control-sm'
+        /= f.search_fieldx :language_cont, placeholder: 'Language', class: 'form-control form-control-sm'
         /= f.select :language_cont, ['English', 'Polish', 'Russian'], include_blank: true, class: 'form-control form-control-sm'
         = f.label :language
         = f.select :language_cont, Course.languages, include_blank: true

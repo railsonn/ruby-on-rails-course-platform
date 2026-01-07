@@ -1,23 +1,19 @@
-= form_with(model: lesson) do |form|
-  - if lesson.errors.any?
-    %div{style: "color: red"}
-      %h2= "#{pluralize(lesson.errors.count, "error")} prohibited this lesson from being saved:"
-
+= simple_form_for @lesson, html: { class: "card shadow-lg p-4 mt-4 border-0", style: "background: linear-gradient(135deg, #0d6efd, #6610f2); border-radius: 20px; color: white;" } do |form|
+  - if @lesson.errors.any?
+    .alert.alert-danger
+      %h2.text-white= "#{pluralize(@lesson.errors.count, 'error')} prohibited this lesson from being saved:"
       %ul
-        - lesson.errors.each do |error|
+        - @lesson.errors.each do |error|
           %li= error.full_message
 
-  %div
-    = form.label :title, style: "display: block"
-    = form.text_field :title
+  .mb-3
+    = form.input :title, label: "Title", label_html: { class: "form-label fw-bold text-white" }, input_html: { class: "form-control rounded-pill shadow-sm" }
 
-  %div
-    = form.label :content, style: "display: block"
-    = form.textarea :content
+  .mb-3
+    = form.input :content, as: :text, label: "Content", label_html: { class: "form-label fw-bold text-white" }, input_html: { class: "form-control shadow-sm", rows: 5 }
 
-  %div
-    = form.label :course_id, style: "display: block"
-    = form.text_field :course_id
+  .mb-3
+    = form.association :course, label: "Course", label_html: { class: "form-label fw-bold text-white" }, input_html: { class: "form-control shadow-sm" }
 
-  %div
-    = form.submit
+  .text-center.mt-4
+    = form.button :submit, "Save Lesson", class: "btn btn-light fw-bold px-5 py-2 rounded-pill shadow"

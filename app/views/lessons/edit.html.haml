@@ -1,12 +1,12 @@
 - content_for :title, "Editing lesson"
 
-%h1 Editing lesson
+.container.mt-4
+  .row.justify-content-center
+    .col-md-8
+      %h1.text-center.mb-4.text-primary Editing lesson
 
-= render "form", lesson: @lesson
+      = render "form", lesson: @lesson
 
-%br
-
-%div
-  = link_to "Show this lesson", @lesson
-  |
-  = link_to "Back to lessons", lessons_path
+      .d-flex.justify-content-between.mt-4
+        = link_to "Show this lesson", @lesson, class: "btn btn-outline-primary"
+        = link_to "Back to lessons", lessons_path, class: "btn btn-outline-secondary"
