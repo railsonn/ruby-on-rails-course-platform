@@ -6,9 +6,5 @@
     .col-md-8
       = render @lesson
 
-      .d-flex.justify-content-between.align-items-center.mt-4
-        .btn-group
-          = link_to "Edit this lesson", edit_lesson_path(@lesson), class: "btn btn-outline-primary"
-          = link_to "Back to lessons", lessons_path, class: "btn btn-outline-secondary"
-
-        = button_to "Destroy this lesson", @lesson, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"
+      .d-flex.justify-content-between.align-items-center.mt-4y  
+        = link_to "Back to course", course_path(@lesson.course)

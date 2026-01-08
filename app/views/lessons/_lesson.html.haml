@@ -1,15 +1,10 @@
-%div{id: dom_id(lesson), class: "card shadow-sm mb-3 border-0"}
+.card 
+  .card-header
+    = link_to lesson.title, lesson
   .card-body
-    %h5.card-title.fw-bold.text-primary= lesson.title
-
-    %p.card-text
-      %strong Content:
-      %br
-      = truncate(lesson.content, length: 150)
-
-    %p.card-text
-      %strong Course:
-      = lesson.course&.title || lesson.course_id
-
-  .card-footer.text-end.bg-light
-    = link_to "Show", lesson, class: "btn btn-outline-primary btn-sm"
+    = lesson.content
+    = lesson.course
+  .card-footer
+    = link_to "edit", edit_lesson_path(lesson), class: "btn btn-sm btn-warning" 
+    = link_to "destroy", lesson, method: :delete, data: {confirm: "are you sure"}, class: "btn btn-sm btn-danger"
+    

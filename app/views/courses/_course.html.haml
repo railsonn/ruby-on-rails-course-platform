@@ -3,7 +3,7 @@
 
     .card-header.text-center
       %i.bi.bi-book.me-1
-      = link_to course.title, courses_path(@courses)
+      = link_to course.title, course_path(course)
 
     .card-body
       = course.description
