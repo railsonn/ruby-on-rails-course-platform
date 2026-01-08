@@ -6,16 +6,20 @@ class LessonPolicy < ApplicationPolicy
   # https://gist.github.com/Burgestrand/4b4bc22f31c8a95c425fc0e30d7ef1f5
 
 
+  def show?
+    @user.has_role?(:admin)  || record.course.user_id == @user.id
+  end
+
   def edit?
-    record.course.user_id == user.id
+    record.course.user_id == @user.id
   end
 
   def update?
-    record.course.user_id == user.id
+    record.course.user_id == @user.id
   end
 
   def destroy?
-    record.course.user_id == user.id
+    record.course.user_id == @user.id
   end
 
   class Scope < ApplicationPolicy::Scope
