@@ -16,5 +16,6 @@
     /= form.association :course, label: "Course", label_html: { class: "form-label fw-bold text-white" }, input_html: { class: "form-control shadow-sm" }
     = form.input :course_id, input_html: { value: @lesson.course_id || params[:course_id] }, as: :hidden
 
+
   .text-center.mt-4
     = form.button :submit, "Save Lesson", class: "btn btn-light fw-bold px-5 py-2 rounded-pill shadow"
