@@ -33,7 +33,7 @@
           = course.created_at.strftime('%d-%b-%Y')
         .col-md-6.text-right
           %i.bi.bi-person-workspace.me-1
-          = course.user.username
+          = link_to course.user.username, user_path(course.user)
 
     - if current_user
       - if policy(course).edit?
