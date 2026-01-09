@@ -1,4 +1,4 @@
-= simple_form_for @lesson, html: { class: "card shadow-lg p-4 mt-4 border-0", style: "background: linear-gradient(135deg, #0d6efd, #6610f2); border-radius: 20px; color: white;" } do |form|
+= simple_form_for [:course, @lesson], html: { class: "card shadow-lg p-4 mt-4 border-0", style: "background: linear-gradient(135deg, #0d6efd, #6610f2); border-radius: 20px; color: white;" } do |form|
   - if @lesson.errors.any?
     .alert.alert-danger
       %h2.text-white= "#{pluralize(@lesson.errors.count, 'error')} prohibited this lesson from being saved:"

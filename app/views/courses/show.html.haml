@@ -1,13 +1,9 @@
 %p{style: "color: green"}= notice
 
-= link_to 'Courses', courses_path
-
-\/
-
-.row 
+.row
   .col-lg-6
-    = render "courses/course", course: @course
+    = render 'courses/course', course: @course
   .col-lg-6
-    = link_to "Add lesson", new_lesson_path(course_id: @course.id)
+    = link_to 'Add lesson', new_course_lesson_path(course_id: @course.id)
     - @lessons.each do |lesson|
-      = render '/lessons/lesson', lesson: lesson
+      = render 'lessons/lesson', lesson: lesson
