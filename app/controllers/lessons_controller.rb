@@ -15,6 +15,7 @@ class LessonsController < ApplicationController
   def new
     @lesson = Lesson.new
     @course = Course.friendly.find(params.expect(:course_id))
+    authorize @lesson
   end
 
   # GET /lessons/1/edit
@@ -28,6 +29,7 @@ class LessonsController < ApplicationController
 
     @course = Course.friendly.find(params.expect(:course_id))
     @lesson.course_id = @course.id
+    authorize @lesson
 
     respond_to do |format|
       if @lesson.save
