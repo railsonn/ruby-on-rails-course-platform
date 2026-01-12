@@ -10,8 +10,9 @@
     = form.input :title, label: "Title", label_html: { class: "form-label fw-bold text-white" }, input_html: { class: "form-control rounded-pill shadow-sm" }
 
   .mb-3
-    = form.input :content, as: :text, label: "Content", label_html: { class: "form-label fw-bold text-white" }, input_html: { class: "form-control shadow-sm", rows: 5 }
-
+    = form.input :content
+    %small= form.error :content, class: 'text-danger'
+    
   .mb-3
     /= form.association :course, label: "Course", label_html: { class: "form-label fw-bold text-white" }, input_html: { class: "form-control shadow-sm" }
     = form.input :course_id, input_html: { value: @lesson.course_id || params[:course_id] }, as: :hidden

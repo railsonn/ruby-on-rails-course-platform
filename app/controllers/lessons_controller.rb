@@ -15,7 +15,6 @@ class LessonsController < ApplicationController
   def new
     @lesson = Lesson.new
     @course = Course.friendly.find(params.expect(:course_id))
-    authorize @lesson
   end
 
   # GET /lessons/1/edit
@@ -33,7 +32,6 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to @lesson, notice: "Lesson was successfully created." }
         format.html { redirect_to course_lesson_path(@course, @lesson), notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @lesson }
       else
@@ -63,7 +61,7 @@ class LessonsController < ApplicationController
     @lesson.destroy!
 
     respond_to do |format|
-      format.html { redirect_to lessons_path, notice: "Lesson was successfully destroyed.", status: :see_other }
+      format.html { redirect_to course_path(@course), notice: "Lesson was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
     end
   end
