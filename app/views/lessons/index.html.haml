@@ -1,4 +1,4 @@
-- content_for :title, "Lessons"
+- content_for :title, t("lessons.index.title")
 
 - if notice
   %p.alert.alert-success.text-center= notice
@@ -6,8 +6,10 @@
 .container.mt-4
   .row
     .col-md-12.d-flex.justify-content-between.align-items-center.mb-3
-      %h1 Lessons
-      = link_to "New lesson", new_lesson_path, class: "btn btn-success"
+      %h1= t("lessons.index.title")
+      = link_to t("lessons.index.new"),
+        new_course_lesson_path(@course),
+        class: "btn btn-success"
 
   %hr
 
@@ -21,6 +23,8 @@
                 = render lesson
 
               .card-footer.text-center
-                = link_to "Show this lesson", lesson, class: "btn btn-outline-success btn-sm"
+                = link_to t("lessons.index.show"),
+                  [@course, lesson],
+                  class: "btn btn-outline-success btn-sm"
     - else
-      %p.text-muted.text-center No lessons found.
+      %p.text-muted.text-center= t("lessons.index.empty")

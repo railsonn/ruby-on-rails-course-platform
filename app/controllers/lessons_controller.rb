@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  before_action :set_course
   before_action :set_lesson, only: %i[ show edit update destroy ]
 
   # GET /lessons or /lessons.json
@@ -24,10 +25,7 @@ class LessonsController < ApplicationController
 
   # POST /lessons or /lessons.json
   def create
-    @lesson = Lesson.new(lesson_params)
-
-    @course = Course.friendly.find(params.expect(:course_id))
-    @lesson.course_id = @course.id
+    @lesson = @course.lessons.build(lesson_params)
     authorize @lesson
 
     respond_to do |format|
@@ -71,6 +69,10 @@ class LessonsController < ApplicationController
     def set_lesson
       @course = Course.friendly.find(params.expect(:course_id))
       @lesson = Lesson.friendly.find(params.expect(:id))
+    end
+
+    def set_course
+      @course = Course.friendly.find(params.require(:course_id))
     end
 
     # Only allow a list of trusted parameters through.

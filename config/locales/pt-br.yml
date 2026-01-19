@@ -146,3 +146,24 @@ pt-BR:
       terms: "Termos e condições"
       about: "Sobre nós"
       teach: "Ensine na CoursePlatform"
+
+  lessons:
+    form:
+      title: "Título"
+      content: "Conteúdo"
+      submit: "Salvar aula"
+
+      errors:
+        header: "%{count} erro(s) impediram esta aula de ser salva:"
+
+    card:
+      edit: "Editar"
+      destroy: "Excluir"
+      confirm_destroy: "Tem certeza?"
+
+    index:
+      title: "Aulas"
+      new: "Nova aula"
+      show: "Ver esta aula"
+      empty: "Nenhuma aula encontrada."
+      notice: "Operação realizada com sucesso."
