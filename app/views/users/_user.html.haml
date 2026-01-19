@@ -4,69 +4,72 @@
     %i.bi.bi-person-circle.me-2
     - if user.online?
       %i.bi.bi-circle-fill.text-success.me-1
-      online
+      = t("users.card.status.online")
     - else 
       %i.bi.bi-circle-fill.text-danger.me-1
-      offline
+      = t("users.card.status.offline")
     = link_to user.email, user_path(user)
 
 
   .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
     %i.bi.bi-calendar-check.me-1
-    %span.fw-bold.me-1 Signed up:
+    %span.fw-bold.me-1= t("users.card.signed_up")
     %span= time_ago_in_words(user.created_at)
-    ago
+    = t("users.card.ago")
+
 
   .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
 
     .row.mb-1
       .col-6.fw-bold
         %i.bi.bi-box-arrow-in-right.me-1
-        = 'sign_in_count'.humanize
+        = t("users.card.fields.sign_in_count")
       .col-6.text-end= user.sign_in_count
 
     .row.mb-1
       .col-6.fw-bold
         %i.bi.bi-clock-history.me-1
-        = 'current_sign_in_at'.humanize
-      .col-6.text-end= user.current_sign_in_at
+        = t("users.card.fields.current_sign_in_at")
+      .col-6.text-end= l(user.current_sign_in_at)
 
     .row.mb-1
       .col-6.fw-bold
         %i.bi.bi-clock.me-1
-        = 'last_sign_in_at'.humanize
-      .col-6.text-end= user.last_sign_in_at
+        = t("users.card.fields.last_sign_in_at")
+      .col-6.text-end= l(user.last_sign_in_at)  
 
     .row.mb-1
       .col-6.fw-bold
         %i.bi.bi-pc-display.me-1
-        = 'current_sign_in_ip'.humanize
+        = t("users.card.fields.current_sign_in_ip")
       .col-6.text-end= user.current_sign_in_ip
 
     .row
       .col-6.fw-bold
         %i.bi.bi-hdd-network.me-1
-        = 'last_sign_in_ip'.humanize
+        = t("users.card.fields.last_sign_in_ip")
       .col-6.text-end= user.last_sign_in_ip
+
 
   .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
     %i.bi.bi-patch-check.me-1
-    %span.fw-bold.me-1 Confirmed email?
+    %span.fw-bold.me-1= t("users.card.confirmation.label")
     - if user.confirmed_at.present?
       %span.badge.bg-success
         %i.bi.bi-check-circle.me-1
-        Yes
+        = t("users.card.confirmation.yes")
     - else
       %span.badge.bg-danger
         %i.bi.bi-x-circle.me-1
-        No
+        = t("users.card.confirmation.no")
+
 
   .card-footer
     - user.roles.each do |role|
       .badge.badge-info
         %i.bi.bi-shield-lock.me-1
-        = role.name
+        = t("roles.#{role.name}", default: role.name)
     - if policy(user).edit?
       = link_to edit_user_path(user), class: 'btn btn-sm btn-warning' do
         %i.bi.bi-pencil-square.me-1
-        Edit roles
+        = t("users.card.actions.edit_roles")

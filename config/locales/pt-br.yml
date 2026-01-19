@@ -1,5 +1,37 @@
+# "pt-BR":
+#   hello: "Olá mundo"
+#   goodbye: "Adeus"
+#   thank_you: "Obrigado"
+#   welcome: "Bem-vindo"
+
+#################################################
+
+
 "pt-BR":
-  hello: "Olá mundo"
-  goodbye: "Adeus"
-  thank_you: "Obrigado"
-  welcome: "Bem-vindo"
+  users:
+    card:
+      status:
+        online: "online"
+        offline: "offline"
+
+      signed_up: "Cadastrado há"
+      ago: "atrás"
+
+      fields:
+        sign_in_count: "Quantidade de logins"
+        current_sign_in_at: "Último login atual"
+        last_sign_in_at: "Último login"
+        current_sign_in_ip: "IP do login atual"
+        last_sign_in_ip: "IP do último login"
+
+      confirmation:
+        label: "E-mail confirmado?"
+        yes: "Sim"
+        no: "Não"
+
+      actions:
+        edit_roles: "Editar permissões"
+
+  roles:
+    admin: "Administrador"
+    user: "Usuário"
