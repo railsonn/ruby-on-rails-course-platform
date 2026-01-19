@@ -2,7 +2,7 @@
 
   - if @course.errors.any?
     %div.alert.alert-danger
-      %h2.text-white= "#{pluralize(@course.errors.count, 'error')} prohibited this course from being saved:"
+      %h2.text-white= t('courses.form.errors.header', count: @course.errors.count)
 
       %ul
         - @course.errors.each do |error|
@@ -10,7 +10,7 @@
 
   %div.mb-3
     = f.input :title,
-      label: "Title",
+      label: t('courses.form.title'),
       label_html: { class: "form-label fw-bold" },
       input_html: { class: "form-control rounded-pill shadow-sm" }
 
@@ -18,31 +18,31 @@
 
     = f.input :description,
       as: :text,
-      label: "Description",
+      label: t('courses.form.description'),
       label_html: { class: "form-label fw-bold" },
       input_html: { class: "form-control shadow-sm", rows: 4 }
 
     = f.input :short_description,
-      label: "Short description",
+      label: t('courses.form.short_description'),
       label_html: { class: "form-label fw-bold" },
       input_html: { class: "form-control shadow-sm", rows: 4 }
 
     = f.input :language,
       collection: ["english", "polish", "russia"],
-      label: "Language",
+      label: t('courses.form.language'),
       label_html: { class: "form-label fw-bold" },
       input_html: { class: "form-control shadow-sm" }
 
     = f.input :level,
       collection: ["begginer", "intermediario", "advanced"],
-      label: "Level",
+      label: t('courses.form.level'),
       label_html: { class: "form-label fw-bold" },
       input_html: { class: "form-control shadow-sm" }
 
     = f.input :price,
-      label: "Price",
+      label: t('courses.form.price'),
       label_html: { class: "form-label fw-bold" },
       input_html: { class: "form-control shadow-sm" }
 
   %div.text-center.mt-4
-    = f.button :submit, "Save Course", class: "btn btn-light fw-bold px-5 py-2 rounded-pill shadow"
+    = f.button :submit, t('courses.form.submit'), class: "btn btn-light fw-bold px-5 py-2 rounded-pill shadow"

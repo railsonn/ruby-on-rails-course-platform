@@ -35,3 +35,39 @@
   roles:
     admin: "Administrador"
     user: "Usuário"
+
+  courses:
+    actions:
+      edit: "Editar"
+      destroy: "Excluir"
+      confirm_destroy: "Tem certeza?"
+    labels:
+      price: "Preço"
+      lessons: "Aulas"
+      language: "Idioma"
+      level: "Nível"
+      created_at: "Criado em"
+      instructor: "Instrutor"
+
+  courses:
+    form:
+      title: "Título"
+      description: "Descrição"
+      short_description: "Descrição curta"
+      language: "Idioma"
+      level: "Nível"
+      price: "Preço"
+      submit: "Salvar curso"
+
+      languages:
+        english: "Inglês"
+        polish: "Polonês"
+        russia: "Russo"
+
+      levels:
+        begginer: "Iniciante"
+        intermediario: "Intermediário"
+        advanced: "Avançado"
+
+      errors:
+        header: "%{count} erro(s) impediram este curso de ser salvo:"

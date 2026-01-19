@@ -12,7 +12,7 @@
     .card-footer.text-center
       %i.bi.bi-currency-dollar.me-1
       = number_to_currency(course.price)
-  
+
     .card-footer
       %i.bi.bi-journal-text.me-1
       = course.lessons.count
@@ -40,13 +40,11 @@
         .card-footer.text-center.d-flex.justify-content-center.gap-2
           = link_to edit_course_path(course), class: 'btn btn-sm btn-warning' do
             %i.bi.bi-pencil-square.me-1
-            Edit
+            = t('courses.actions.edit')
 
           - if course.user_id == current_user.id
-            = button_to "Destroy",
+            = button_to t('courses.actions.destroy'),
               course,
               method: :delete,
-              data: { turbo_confirm: "Are you sure?" },
+              data: { turbo_confirm: t('courses.actions.confirm_destroy') },
               class: "btn btn-sm btn-danger"
-
-          
