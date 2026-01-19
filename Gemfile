@@ -27,7 +27,7 @@ gem 'devise'
 # friendly_id
 gem 'friendly_id', '~> 5.5.0'
 # font-awesome-sass
-gem 'font-awesome-sass', '~> 6.0.0'
+gem 'font-awesome-sass', '~> 6.7.2'
 #  gem ransack
 gem 'ransack'
 # gem public_activity
