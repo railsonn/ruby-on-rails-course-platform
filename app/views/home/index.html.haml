@@ -1,17 +1,20 @@
 .jumbotron.bg-light.p-5.mb-5.shadow-sm.rounded
   .display-4.text-center.mb-4.text-primary
     %i.bi.bi-mortarboard-fill.mr-2
-    what do you want learn today?
+    = t('home.hero.title')
 
   .p-4.d-flex.justify-content-center
     .form-inline.my-2.my-lg-0.w-75
       = form_tag(courses_path, method: :get, class: "w-100") do
         .input-group.w-100.shadow-sm
-          = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search for a course...", class: 'form-control form-control-lg border-0'
+          = text_field_tag :title, params[:title],
+            autocomplete: 'off',
+            placeholder: t('home.hero.search_placeholder'),
+            class: 'form-control form-control-lg border-0'
           %span.input-group-append
             %button.btn.btn-primary.btn-lg{:type => "submit"}
               %i.bi.bi-search.mr-2{"aria-hidden" => "true"}
-              Pesquisar
+              = t('home.hero.search_button')
               %i.bi.bi-star-fill
 
 .card-group.mb-5
@@ -19,34 +22,29 @@
     %h1.text-primary.mb-2
       %i.bi.bi-mortarboard-fill
     %h4.font-weight-bold= Course.count
-    %small.text-muted online course
+    %small.text-muted= t('home.stats.courses.label')
     .row.mt-2
-    %p.text-muted Explore a variety of fresh topics
+    %p.text-muted= t('home.stats.courses.description')
 
   .card.card-body.text-center.shadow-sm.border-0.p-4
     %h1.text-success.mb-2
       %i.bi.bi-person-workspace
     %h4.font-weight-bold= Course.distinct.count(:user_id)
-    %small.text-muted expert instructors
+    %small.text-muted= t('home.stats.instructors.label')
     .row.mt-2
-    %p.text-muted Find the right instructor for you
+    %p.text-muted= t('home.stats.instructors.description')
 
   .card.card-body.text-center.shadow-sm.border-0.p-4
     %h1.text-info.mb-2
       %i.bi.bi-people-fill
     %h4.font-weight-bold= User.count
-    %small.text-muted active learners
+    %small.text-muted= t('home.stats.learners.label')
     .row.mt-2
-    %p.text-muted Join the knowledge sharing community
+    %p.text-muted= t('home.stats.learners.description')
 
   .card.card-body.text-center.shadow-sm.border-0.p-4
     %h1.text-warning.mb-2
       %i.bi.bi-infinity
-    %h4.font-weight-bold Lifetime access
+    %h4.font-weight-bold= t('home.stats.access.label')
     .row.mt-2
-    %p.text-muted Learn on your schedule
-
-
-
-    %h2 
-      = t('hello') 
+    %p.text-muted= t('home.stats.access.description')

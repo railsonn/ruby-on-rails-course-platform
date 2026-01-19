@@ -1,39 +1,44 @@
 %p{style: "color: green"}= notice
- 
 
-- content_for :title, "Courses"
+- content_for :title, t('courses.index.title')
 
 .row
   .col-md-2
     .form-inline
       = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
-        = f.label :title
-        = f.search_field :title_cont, placeholder: 'Title', class: 'form-control form-control-sm'
-        = f.label :description
-        = f.search_field :short_description_cont, placeholder: 'Description', class: 'form-control form-control-sm'
+        = f.label :title, t('courses.index.search.title')
+        = f.search_field :title_cont, placeholder: t('courses.index.placeholders.title'), class: 'form-control form-control-sm'
+
+        = f.label :description, t('courses.index.search.description')
+        = f.search_field :short_description_cont, placeholder: t('courses.index.placeholders.description'), class: 'form-control form-control-sm'
+
         /= f.search_fieldx :language_cont, placeholder: 'Language', class: 'form-control form-control-sm'
         /= f.select :language_cont, ['English', 'Polish', 'Russian'], include_blank: true, class: 'form-control form-control-sm'
-        = f.label :language
+
+        = f.label :language, t('courses.index.search.language')
         = f.select :language_cont, Course.languages, include_blank: true
+
         /= f.search_field :level_cont, placeholder: 'Level', class: 'form-control form-control-sm'
-        = f.label :level
+
+        = f.label :level, t('courses.index.search.level')
         = f.select :level_cont, Course.levels, include_blank: true
-        = f.label :price
-        = f.search_field :price_eq, placeholder: 'Price', class: 'form-control form-control-sm'
-        = f.label :teacher
-        = f.search_field :user_email_cont, placeholder: 'Email', class: 'form-control form-control-sm'
-        = f.submit
-      = link_to 'refresh', courses_path
 
-.col-md-10     
+        = f.label :price, t('courses.index.search.price')
+        = f.search_field :price_eq, placeholder: t('courses.index.placeholders.price'), class: 'form-control form-control-sm'
 
-%h1 Courses
-Course:
+        = f.label :teacher, t('courses.index.search.teacher')
+        = f.search_field :user_email_cont, placeholder: t('courses.index.placeholders.email'), class: 'form-control form-control-sm'
+
+        = f.submit t('courses.index.search.submit')
+
+      = link_to t('courses.index.search.refresh'), courses_path
+
+.col-md-10
+
+%h1= t('courses.index.title')
+= t('courses.index.quantity')
 = @quant
 
 %div{id: "courses"}
   - @courses.each do |course|
     = render "course", course: course
-
-
-

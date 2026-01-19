@@ -3,20 +3,22 @@
   .container
     .row
       .col-md-4
-        Copyright
-        © 
+        = t('footer.copyright')
+        ©
         = Time.now.year
-        CoursePlatform Sp. z o.o.
+        = t('footer.company')
         .row
         .fa.fa-envelope
         = mail_to 'yashm@outlook.com'
         .row
+
       .col-md-4
-        Privacy policy
+        = t('footer.links.privacy_policy')
         .row
-        Terms and conditions
+        = t('footer.links.terms')
+
       .col-md-4
-        About us
+        = t('footer.links.about')
         .row
-        = link_to 'Teach on CoursePlatform', new_course_path
+        = link_to t('footer.links.teach'), new_course_path
 %br

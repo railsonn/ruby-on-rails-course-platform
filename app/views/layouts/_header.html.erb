@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
       <i class="bi bi-gem me-1"></i>
-      Rubygems
+      <%= t('navbar.brand') %>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,28 +15,28 @@
         <li class="nav-item" if current_page?(root_path)>
           <%= link_to home_index_path, class: 'nav-link active' do %>
             <i class="bi bi-house me-1"></i>
-            Home
+            <%= t('navbar.links.home') %>
           <% end %>
         </li>
 
         <li class="nav-item" if current_page?(courses_path)>
           <%= link_to courses_path(@course), class: 'nav-link active' do %>
             <i class="bi bi-journal-bookmark me-1"></i>
-            Courses
+            <%= t('navbar.links.courses') %>
           <% end %>
         </li>
 
         <li class="nav-item" if current_page?(new_course_path)>
           <%= link_to new_course_path, class: 'nav-link active' do %>
             <i class="bi bi-plus-circle me-1"></i>
-            New course
+            <%= t('navbar.links.new_course') %>
           <% end %>
         </li>
 
         <li class="nav-item" if current_page?(users_path)>
           <%= link_to users_path, class: 'nav-link active' do %>
             <i class="bi bi-people me-1"></i>
-            Users
+            <%= t('navbar.links.users') %>
           <% end %>
         </li>
       </ul>
@@ -48,13 +48,13 @@
             <%= f.search_field :title_cont,
               class: "form-control-sm",
               style: "float: left; width: 150px;",
-              placeholder: "Find a course",
+              placeholder: t('navbar.search.placeholder'),
               autocomplete: "off" %>
 
             <span class="input-group-append">
               <button type="submit" class="btn btn-primary btn-sm">
                 <i class="bi bi-search me-1"></i>
-                <span aria-hidden="true">Search</span>
+                <span aria-hidden="true"><%= t('navbar.search.button') %></span>
               </button>
             </span>
           </div>
@@ -64,14 +64,14 @@
           <li class="nav-item" if current_page?(home_activity_path)>
             <%= link_to home_activity_path, class: 'nav-link active' do %>
               <i class="bi bi-activity me-1"></i>
-              Activity
+              <%= t('navbar.links.activity') %>
             <% end %>
           </li>
 
           <li class="nav-item <%= 'active font-weight-bold' if current_page?(root_path) %>">
             <%= link_to root_path, class: "nav-link" do %>
               <i class="bi bi-house-door me-1"></i>
-              Home
+              <%= t('navbar.links.home') %>
             <% end %>
           </li>
         </ul>
@@ -88,13 +88,13 @@
                 <li>
                   <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
                     <i class="bi bi-gear me-1"></i>
-                    Minha conta
+                    <%= t('navbar.user.account') %>
                   <% end %>
                 </li>
                 <li>
                   <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" do %>
                     <i class="bi bi-box-arrow-right me-1"></i>
-                    Logout
+                    <%= t('navbar.user.logout') %>
                   <% end %>
                 </li>
               </ul>
@@ -107,12 +107,12 @@
         <div class="d-flex">
           <%= link_to new_user_session_path, class: "btn btn-outline-primary me-2" do %>
             <i class="bi bi-box-arrow-in-right me-1"></i>
-            Log in
+            <%= t('navbar.auth.login') %>
           <% end %>
 
           <%= link_to new_user_registration_path, class: "btn btn-primary" do %>
             <i class="bi bi-person-plus me-1"></i>
-            Register
+            <%= t('navbar.auth.register') %>
           <% end %>
         </div>
       <% end %>

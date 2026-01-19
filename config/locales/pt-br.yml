@@ -7,12 +7,12 @@
 #################################################
 
 
-"pt-BR":
+pt-BR:
   users:
     card:
       status:
-        online: "online"
-        offline: "offline"
+        online: "Online"
+        offline: "Offline"
 
       signed_up: "Cadastrado há"
       ago: "atrás"
@@ -41,6 +41,7 @@
       edit: "Editar"
       destroy: "Excluir"
       confirm_destroy: "Tem certeza?"
+
     labels:
       price: "Preço"
       lessons: "Aulas"
@@ -49,7 +50,6 @@
       created_at: "Criado em"
       instructor: "Instrutor"
 
-  courses:
     form:
       title: "Título"
       description: "Descrição"
@@ -71,3 +71,78 @@
 
       errors:
         header: "%{count} erro(s) impediram este curso de ser salvo:"
+
+    index:
+      title: "Cursos"
+      notice: "Aviso"
+
+      search:
+        title: "Título"
+        description: "Descrição"
+        language: "Idioma"
+        level: "Nível"
+        price: "Preço"
+        teacher: "Professor"
+        email: "E-mail"
+        refresh: "Atualizar"
+        submit: "Buscar"
+
+      placeholders:
+        title: "Título"
+        description: "Descrição"
+        price: "Preço"
+        email: "E-mail"
+
+      quantity: "Cursos:"
+
+  home:
+    hero:
+      title: "O que você quer aprender hoje?"
+      search_placeholder: "Buscar um curso..."
+      search_button: "Pesquisar"
+
+    stats:
+      courses:
+        label: "cursos online"
+        description: "Explore uma variedade de novos tópicos"
+      instructors:
+        label: "instrutores especialistas"
+        description: "Encontre o instrutor certo para você"
+      learners:
+        label: "alunos ativos"
+        description: "Participe da comunidade de compartilhamento de conhecimento"
+      access:
+        label: "Acesso vitalício"
+        description: "Aprenda no seu próprio ritmo" 
+
+  navbar:
+    brand: "Rubygems"
+
+    links:
+      home: "Início"
+      courses: "Cursos"
+      new_course: "Novo curso"
+      users: "Usuários"
+      activity: "Atividade"
+
+    search:
+      placeholder: "Buscar um curso"
+      button: "Buscar"
+
+    user:
+      account: "Minha conta"
+      logout: "Sair"
+
+    auth:
+      login: "Entrar"
+      register: "Cadastrar"
+
+  footer:
+    copyright: "Direitos autorais"
+    company: "CoursePlatform Sp. z o.o."
+
+    links:
+      privacy_policy: "Política de privacidade"
+      terms: "Termos e condições"
+      about: "Sobre nós"
+      teach: "Ensine na CoursePlatform"
