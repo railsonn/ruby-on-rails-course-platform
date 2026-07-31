@@ -1,7 +1,22 @@
 - content_for :title, "Editing course"
 
-.card
-  .card-header
-    %h1 Editing course
-  .card-body
-    = render 'form'
+.container.py-5
+
+  .row.justify-content-center
+    .col-lg-8
+
+      .card.border-0.shadow-lg.rounded-4.overflow-hidden
+
+        .card-header.text-white.border-0.p-4{style: "background: linear-gradient(135deg, #667eea, #764ba2);"}
+
+          %h1.fw-bold.mb-1
+            %i.bi.bi-pencil-square.me-2
+            Editing course
+
+          %p.mb-0.opacity-75
+            Atualize as informações do seu curso
+
+
+        .card-body.p-5.bg-white
+
+          = render 'form'

@@ -1,44 +1,115 @@
-%p{style: "color: green"}= notice
+%p.alert.alert-success.rounded-3.shadow-sm= notice if notice
 
 - content_for :title, t('courses.index.title')
 
-.row
-  .col-md-2
-    .form-inline
-      = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
-        = f.label :title, t('courses.index.search.title')
-        = f.search_field :title_cont, placeholder: t('courses.index.placeholders.title'), class: 'form-control form-control-sm'
+.container-fluid.py-4
 
-        = f.label :description, t('courses.index.search.description')
-        = f.search_field :short_description_cont, placeholder: t('courses.index.placeholders.description'), class: 'form-control form-control-sm'
+  .row.g-4
 
-        /= f.search_fieldx :language_cont, placeholder: 'Language', class: 'form-control form-control-sm'
-        /= f.select :language_cont, ['English', 'Polish', 'Russian'], include_blank: true, class: 'form-control form-control-sm'
+    / Filtros
+    .col-lg-3
 
-        = f.label :language, t('courses.index.search.language')
-        = f.select :language_cont, Course.languages, include_blank: true
+      .card.border-0.shadow-sm.rounded-4
 
-        /= f.search_field :level_cont, placeholder: 'Level', class: 'form-control form-control-sm'
+        .card-header.text-white.border-0.rounded-top-4{style: "background: linear-gradient(135deg, #667eea, #764ba2);"}
 
-        = f.label :level, t('courses.index.search.level')
-        = f.select :level_cont, Course.levels, include_blank: true
+          %h5.mb-0.fw-bold
+            %i.bi.bi-funnel-fill.me-2
+            Filtros
 
-        = f.label :price, t('courses.index.search.price')
-        = f.search_field :price_eq, placeholder: t('courses.index.placeholders.price'), class: 'form-control form-control-sm'
 
-        = f.label :teacher, t('courses.index.search.teacher')
-        = f.search_field :user_email_cont, placeholder: t('courses.index.placeholders.email'), class: 'form-control form-control-sm'
+        .card-body
 
-        = f.submit t('courses.index.search.submit')
+          = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
 
-      = link_to t('courses.index.search.refresh'), courses_path
+            .mb-3
+              = f.label :title, t('courses.index.search.title'), class: "form-label fw-semibold"
 
-.col-md-10
+              = f.search_field :title_cont,
+                placeholder: t('courses.index.placeholders.title'),
+                class: "form-control rounded-3"
 
-%h1= t('courses.index.title')
-= t('courses.index.quantity')
-= @quant
 
-%div{id: "courses"}
-  - @courses.each do |course|
-    = render "course", course: course
+            .mb-3
+              = f.label :description, t('courses.index.search.description'), class: "form-label fw-semibold"
+
+              = f.search_field :short_description_cont,
+                placeholder: t('courses.index.placeholders.description'),
+                class: "form-control rounded-3"
+
+
+            .mb-3
+              = f.label :language, t('courses.index.search.language'), class: "form-label fw-semibold"
+
+              = f.select :language_cont,
+                Course.languages,
+                { include_blank: "Todos" },
+                class: "form-select rounded-3"
+
+
+            .mb-3
+              = f.label :level, t('courses.index.search.level'), class: "form-label fw-semibold"
+
+              = f.select :level_cont,
+                Course.levels,
+                { include_blank: "Todos" },
+                class: "form-select rounded-3"
+
+
+            .mb-3
+              = f.label :price, t('courses.index.search.price'), class: "form-label fw-semibold"
+
+              = f.search_field :price_eq,
+                placeholder: t('courses.index.placeholders.price'),
+                class: "form-control rounded-3"
+
+
+            .mb-3
+              = f.label :teacher, t('courses.index.search.teacher'), class: "form-label fw-semibold"
+
+              = f.search_field :user_email_cont,
+                placeholder: t('courses.index.placeholders.email'),
+                class: "form-control rounded-3"
+
+
+            = f.submit t('courses.index.search.submit'),
+              class: "btn btn-primary w-100 rounded-pill shadow"
+
+
+          = link_to t('courses.index.search.refresh'),
+            courses_path,
+            class: "btn btn-outline-secondary w-100 mt-3 rounded-pill"
+
+
+
+    / Lista de cursos
+    .col-lg-9
+
+
+      .card.border-0.shadow-sm.rounded-4
+
+        .card-header.bg-white.border-0.p-4
+
+          .d-flex.justify-content-between.align-items-center
+
+            %div
+
+              %h1.h3.fw-bold.mb-1
+                %i.bi.bi-mortarboard-fill.me-2.text-primary
+                = t('courses.index.title')
+
+
+              %span.text-muted
+                = t('courses.index.quantity')
+                %strong= @quant
+
+
+        .card-body.p-4
+
+          %div.row.g-4{id: "courses"}
+
+            - @courses.each do |course|
+
+              .col-md-6
+
+                = render "course", course: course
