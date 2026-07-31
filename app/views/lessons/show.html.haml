@@ -1,9 +1,9 @@
-%p{style: "color: green"}= notice
+- if notice
+  %p{ style: "color: green" }= notice
 
 \/
 = link_to @lesson.course.title, course_path(@lesson.course)
 \/
-= link_to @lesson.title, course_lesson_path(@lesson)
 = link_to @lesson.title, course_lesson_path(@course, @lesson)
 
 .container.mt-4
@@ -11,5 +11,6 @@
     .col-md-8
       = render @lesson
 
-      .d-flex.justify-content-between.align-items-center.mt-4y  
-        = link_to "Back to course", course_path(@lesson.course)
+      .d-flex.justify-content-between.align-items-center.mt-4
+        = link_to t("lessons.show.back_to_course"),
+          course_path(@lesson.course)

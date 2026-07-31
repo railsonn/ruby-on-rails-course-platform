@@ -30,13 +30,13 @@
       .col-6.fw-bold
         %i.bi.bi-clock-history.me-1
         = t("users.card.fields.current_sign_in_at")
-      .col-6.text-end= l(user.current_sign_in_at)
+      .col-6.text-end= = user.current_sign_in_at.present? ? l(user.current_sign_in_at) : "Nunca fez login"
 
     .row.mb-1
       .col-6.fw-bold
         %i.bi.bi-clock.me-1
         = t("users.card.fields.last_sign_in_at")
-      .col-6.text-end= l(user.last_sign_in_at)  
+      .col-6.text-end= = user.current_sign_in_at.present? ? l(user.last_sign_in_at) : "Nunca fez login"  
 
     .row.mb-1
       .col-6.fw-bold

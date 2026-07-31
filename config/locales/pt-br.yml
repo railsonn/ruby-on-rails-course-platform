@@ -167,3 +167,6 @@ pt-BR:
       show: "Ver esta aula"
       empty: "Nenhuma aula encontrada."
       notice: "Operação realizada com sucesso."
+
+    show:
+      back_to_course: "Voltar para o curso"
