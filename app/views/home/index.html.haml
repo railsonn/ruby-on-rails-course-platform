@@ -1,50 +1,128 @@
-.jumbotron.bg-light.p-5.mb-5.shadow-sm.rounded
-  .display-4.text-center.mb-4.text-primary
-    %i.bi.bi-mortarboard-fill.mr-2
-    = t('home.hero.title')
+.container.py-5
 
-  .p-4.d-flex.justify-content-center
-    .form-inline.my-2.my-lg-0.w-75
-      = form_tag(courses_path, method: :get, class: "w-100") do
-        .input-group.w-100.shadow-sm
-          = text_field_tag :title, params[:title],
-            autocomplete: 'off',
-            placeholder: t('home.hero.search_placeholder'),
-            class: 'form-control form-control-lg border-0'
-          %span.input-group-append
-            %button.btn.btn-primary.btn-lg{:type => "submit"}
-              %i.bi.bi-search.mr-2{"aria-hidden" => "true"}
-              = t('home.hero.search_button')
-              %i.bi.bi-star-fill
+  / Hero
+  .card.border-0.shadow-lg.overflow-hidden.mb-5
+    .card-body.p-5
+      .row.align-items-center
 
-.card-group.mb-5
-  .card.card-body.text-center.shadow-sm.border-0.p-4
-    %h1.text-primary.mb-2
-      %i.bi.bi-mortarboard-fill
-    %h4.font-weight-bold= Course.count
-    %small.text-muted= t('home.stats.courses.label')
-    .row.mt-2
-    %p.text-muted= t('home.stats.courses.description')
+        .col-lg-7
+          .mb-4
+            %span.badge.bg-primary-subtle.text-primary.px-3.py-2.rounded-pill
+              %i.bi.bi-mortarboard-fill.me-1
+              Plataforma de aprendizagem
 
-  .card.card-body.text-center.shadow-sm.border-0.p-4
-    %h1.text-success.mb-2
-      %i.bi.bi-person-workspace
-    %h4.font-weight-bold= Course.distinct.count(:user_id)
-    %small.text-muted= t('home.stats.instructors.label')
-    .row.mt-2
-    %p.text-muted= t('home.stats.instructors.description')
+          %h1.display-4.fw-bold.text-dark.mb-3
+            = t('home.hero.title')
 
-  .card.card-body.text-center.shadow-sm.border-0.p-4
-    %h1.text-info.mb-2
-      %i.bi.bi-people-fill
-    %h4.font-weight-bold= User.count
-    %small.text-muted= t('home.stats.learners.label')
-    .row.mt-2
-    %p.text-muted= t('home.stats.learners.description')
+          %p.lead.text-muted.mb-4
+            Encontre cursos, aprenda novas habilidades e desenvolva
+            seu conhecimento de forma simples e prática.
 
-  .card.card-body.text-center.shadow-sm.border-0.p-4
-    %h1.text-warning.mb-2
-      %i.bi.bi-infinity
-    %h4.font-weight-bold= t('home.stats.access.label')
-    .row.mt-2
-    %p.text-muted= t('home.stats.access.description')
+          = form_tag(courses_path, method: :get, class: "w-100") do
+            .input-group.input-group-lg.shadow-sm
+              %span.input-group-text.bg-white.border-end-0
+                %i.bi.bi-search.text-muted
+
+              = text_field_tag :title, params[:title],
+                autocomplete: 'off',
+                placeholder: t('home.hero.search_placeholder'),
+                class: 'form-control border-start-0'
+
+              %button.btn.btn-primary.px-4{type: "submit"}
+                = t('home.hero.search_button')
+
+        .col-lg-5.d-none.d-lg-flex.justify-content-center
+          .text-center
+            .bg-primary-subtle.rounded-circle.d-inline-flex.align-items-center.justify-content-center.p-5
+              %i.bi.bi-mortarboard-fill.text-primary{style: "font-size: 5rem;"}
+
+  / Estatísticas
+  .mb-4
+    %h3.fw-bold.text-dark.mb-1
+      %i.bi.bi-bar-chart-fill.text-primary.me-2
+      = t('home.stats.title', default: 'Nossa plataforma')
+
+    %p.text-muted
+      Confira alguns números da nossa comunidade.
+
+  .row.g-4.mb-5
+
+    / Cursos
+    .col-12.col-md-6.col-xl-3
+      .card.h-100.border-0.shadow-sm
+        .card-body.p-4
+          .d-flex.justify-content-between.align-items-start.mb-4
+            .bg-primary-subtle.rounded-3.p-3
+              %i.bi.bi-mortarboard-fill.fs-3.text-primary
+
+            %span.badge.bg-primary-subtle.text-primary
+              Cursos
+
+          %h2.fw-bold.mb-1
+            = Course.count
+
+          %h6.text-dark.fw-semibold.mb-2
+            = t('home.stats.courses.label')
+
+          %p.text-muted.small.mb-0
+            = t('home.stats.courses.description')
+
+    / Instrutores
+    .col-12.col-md-6.col-xl-3
+      .card.h-100.border-0.shadow-sm
+        .card-body.p-4
+          .d-flex.justify-content-between.align-items-start.mb-4
+            .bg-success-subtle.rounded-3.p-3
+              %i.bi.bi-person-workspace.fs-3.text-success
+
+            %span.badge.bg-success-subtle.text-success
+              Instrutores
+
+          %h2.fw-bold.mb-1
+            = Course.distinct.count(:user_id)
+
+          %h6.text-dark.fw-semibold.mb-2
+            = t('home.stats.instructors.label')
+
+          %p.text-muted.small.mb-0
+            = t('home.stats.instructors.description')
+
+    / Alunos
+    .col-12.col-md-6.col-xl-3
+      .card.h-100.border-0.shadow-sm
+        .card-body.p-4
+          .d-flex.justify-content-between.align-items-start.mb-4
+            .bg-info-subtle.rounded-3.p-3
+              %i.bi.bi-people-fill.fs-3.text-info
+
+            %span.badge.bg-info-subtle.text-info
+              Comunidade
+
+          %h2.fw-bold.mb-1
+            = User.count
+
+          %h6.text-dark.fw-semibold.mb-2
+            = t('home.stats.learners.label')
+
+          %p.text-muted.small.mb-0
+            = t('home.stats.learners.description')
+
+    / Acesso
+    .col-12.col-md-6.col-xl-3
+      .card.h-100.border-0.shadow-sm
+        .card-body.p-4
+          .d-flex.justify-content-between.align-items-start.mb-4
+            .bg-warning-subtle.rounded-3.p-3
+              %i.bi.bi-infinity.fs-3.text-warning
+
+            %span.badge.bg-warning-subtle.text-warning
+              Acesso
+
+          %h2.fw-bold.mb-1
+            = t('home.stats.access.label')
+
+          %h6.text-dark.fw-semibold.mb-2
+            Acesso contínuo
+
+          %p.text-muted.small.mb-0
+            = t('home.stats.access.description')
