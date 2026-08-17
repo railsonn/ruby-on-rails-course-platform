@@ -1,24 +1,69 @@
-= simple_form_for [:course, @lesson], html: { class: "card shadow-lg p-4 mt-4 border-0", style: "background: linear-gradient(135deg, #0d6efd, #6610f2); border-radius: 20px; color: white;" } do |form|
-  - if @lesson.errors.any?
-    .alert.alert-danger
-      %h2.text-white= t('lessons.form.errors.header', count: @lesson.errors.count)
-      %ul
-        - @lesson.errors.each do |error|
-          %li= error.full_message
+= simple_form_for [:course, @lesson],
+  html: {class: "card border-0 shadow-lg overflow-hidden mt-4",style: "border-radius: 24px;"} do |form|
 
-  .mb-3
-    = form.input :title,
-      label: t('lessons.form.title'),
-      label_html: { class: "form-label fw-bold text-white" },
-      input_html: { class: "form-control rounded-pill shadow-sm" }
+  / Cabeçalho
+  .p-4.text-white
+    style="background: linear-gradient(135deg, #0d6efd, #6610f2);"
+    .d-flex.align-items-center
+      .bg-white.bg-opacity-25.rounded-circle.p-3.me-3
+        %i.bi.bi-journal-text.fs-3
 
-  .mb-3
-    = form.input :content, label: t('lessons.form.content')
-    %small= form.error :content, class: 'text-danger'
+      %div
+        %h3.fw-bold.mb-1
+          = t('lessons.form.title')
 
-  .mb-3
-    /= form.association :course, label: "Course", label_html: { class: "form-label fw-bold text-white" }, input_html: { class: "form-control shadow-sm" }
-    = form.input :course_id, input_html: { value: @lesson.course_id || params[:course_id] }, as: :hidden
+        %p.mb-0.opacity-75
+          Preencha as informações da aula
 
-  .text-center.mt-4
-    = form.button :submit, t('lessons.form.submit'), class: "btn btn-light fw-bold px-5 py-2 rounded-pill shadow"
+  / Corpo do formulário
+  .card-body.p-4.p-md-5.bg-white
+
+    / Erros
+    - if @lesson.errors.any?
+      .alert.alert-danger.border-0.shadow-sm.rounded-3.mb-4
+        .d-flex.align-items-start
+          %i.bi.bi-exclamation-triangle-fill.fs-4.me-3
+
+          %div
+            %h5.fw-bold.mb-2
+              = t('lessons.form.errors.header', count: @lesson.errors.count)
+
+            %ul.mb-0.ps-3
+              - @lesson.errors.each do |error|
+                %li= error.full_message
+
+    / Título
+    .mb-4
+      = form.input :title,
+        label: t('lessons.form.title'),
+        label_html: {class: "form-label fw-bold text-dark"},
+        wrapper_html: {class: "mb-0"},
+        input_html: {class: "form-control form-control-lg rounded-3 shadow-sm border"}
+
+    / Conteúdo
+    .mb-4
+      = form.input :content,
+        label: t('lessons.form.content'),
+        label_html: {class: "form-label fw-bold text-dark"},
+        input_html: {class: "form-control rounded-3 shadow-sm",rows: 8,placeholder: "Digite o conteúdo da aula..."}
+
+      - if form.object.errors[:content].any?
+        .text-danger.small.mt-2
+          = form.error :content
+
+    / Curso
+    = form.input :course_id,
+      as: :hidden,
+      input_html: {value: @lesson.course_id || params[:course_id]}
+
+    / Botão
+    .d-flex.justify-content-end.mt-4.pt-4.border-top
+      = form.button :submit,
+        t('lessons.form.submit'),
+        class: "btn btn-primary btn-lg fw-bold px-5 rounded-pill shadow-sm"
+
+      - if @lesson.persisted?
+        = link_to course_path(@lesson.course),
+          class: "btn btn-outline-secondary btn-lg fw-bold px-4 rounded-pill ms-2" do
+          %i.bi.bi-arrow-left.me-2
+          Voltar

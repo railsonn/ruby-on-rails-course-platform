@@ -1,11 +1,26 @@
-- content_for :title, "New lesson"
+- content_for :title, "Nova aula"
 
-.container.mt-4
+.container.py-5
   .row.justify-content-center
-    .col-md-8
-      %h1.text-center.mb-4.text-primary New lesson
+    .col-12.col-lg-8
 
+      / Cabeçalho
+      .text-center.mb-4
+        .d-inline-flex.align-items-center.justify-content-center.bg-primary-subtle.text-primary.rounded-circle.p-3.mb-3
+          %i.bi.bi-journal-plus.fs-3
+
+        %h1.fw-bold.text-dark.mb-2
+          Nova aula
+
+        %p.text-muted.mb-0
+          Adicione uma nova aula ao curso.
+
+      / Formulário
       = render "form", lesson: @lesson
 
-      .text-center.mt-4
-        = link_to "Back to lessons", course_lessons_path, class: "btn btn-outline-secondary"
+      / Navegação
+      .d-flex.justify-content-center.mt-4
+        = link_to course_lessons_path,
+          class: "btn btn-outline-secondary rounded-pill px-4" do
+          %i.bi.bi-arrow-left.me-2
+          Voltar para aulas

@@ -1,16 +1,71 @@
-- if notice
-  %p{ style: "color: green" }= notice
+- content_for :title, @lesson.title
 
-\/
-= link_to @lesson.course.title, course_path(@lesson.course)
-\/
-= link_to @lesson.title, course_lesson_path(@course, @lesson)
+.container.py-5
 
-.container.mt-4
+  / Aviso
+  - if notice
+    .alert.alert-success.border-0.shadow-sm.rounded-3.d-flex.align-items-center.mb-4
+      %i.bi.bi-check-circle-fill.me-2
+      = notice
+
+  / Breadcrumb
+  %nav.mb-4{"aria-label" => "breadcrumb"}
+    %ol.breadcrumb.mb-0
+      %li.breadcrumb-item
+        = link_to @lesson.course.title,
+          course_path(@lesson.course),
+          class: "text-decoration-none"
+
+      %li.breadcrumb-item
+        = link_to "Aulas",
+          course_lessons_path(@lesson.course),
+          class: "text-decoration-none"
+
+      %li.breadcrumb-item.active{"aria-current" => "page"}
+        = @lesson.title
+
+  / Cabeçalho
+  .d-flex.align-items-center.mb-4
+    .bg-primary-subtle.text-primary.rounded-circle.p-3.me-3
+      %i.bi.bi-journal-text.fs-3
+
+    %div
+      %small.text-muted Aula
+      %h1.fw-bold.text-dark.mb-0
+        = @lesson.title
+
+  / Conteúdo da aula
   .row.justify-content-center
-    .col-md-8
-      = render @lesson
+    .col-12.col-lg-9
+      .card.border-0.shadow-sm.overflow-hidden
 
-      .d-flex.justify-content-between.align-items-center.mt-4
-        = link_to t("lessons.show.back_to_course"),
-          course_path(@lesson.course)
+        .card-header.border-0.text-white.p-4
+          style="background: linear-gradient(135deg, #0d6efd, #6610f2);"
+
+          .d-flex.align-items-center
+            .bg-white.bg-opacity-25.rounded-circle.p-2.me-3
+              %i.bi.bi-book-half.fs-5
+
+            %div
+              %small.text-white.opacity-75
+                Curso
+
+              %h5.mb-0.fw-bold
+                = @lesson.course.title
+
+        .card-body.p-4.p-md-5
+          = render @lesson
+
+        .card-footer.border-0.p-4
+          .d-flex.flex-column.flex-md-row.justify-content-between.gap-2
+
+            = link_to course_path(@lesson.course),
+              class: "btn btn-outline-secondary rounded-pill px-4" do
+              %i.bi.bi-arrow-left.me-2
+              = t("lessons.show.back_to_course")
+
+            - if policy(@lesson).edit?
+              = link_to edit_course_lesson_path(@lesson.course, @lesson),
+                class: "btn btn-primary rounded-pill px-4" do
+                %i.bi.bi-pencil-square.me-2
+                Editar aula
