@@ -1,9 +1,68 @@
-%p{style: "color: green"}= notice
+%p.alert.alert-success.rounded-3.shadow-sm= notice if notice
 
-.row
-  .col-lg-6
-    = render 'courses/course', course: @course
-  .col-lg-6
-    = link_to 'Add lesson', new_course_lesson_path(course_id: @course.id)
-    - @lessons.each do |lesson|
-      = render 'lessons/lesson', lesson: lesson
+
+.container-fluid.py-5
+
+  .row.g-4
+
+
+    / Informações do curso
+    .col-lg-6
+
+      .card.border-0.shadow-lg.rounded-4.h-100
+
+        .card-body.p-4
+
+          = render 'courses/course', course: @course
+
+
+
+    / Aulas do curso
+    .col-lg-6
+
+      .card.border-0.shadow-lg.rounded-4.h-100
+
+
+        .card-header.text-white.border-0.p-4{style: "background: linear-gradient(135deg, #667eea, #764ba2);"}
+
+          .d-flex.justify-content-between.align-items-center
+
+            %h3.fw-bold.mb-0
+              %i.bi.bi-play-circle-fill.me-2
+              Lessons
+
+
+            = link_to new_course_lesson_path(course_id: @course.id),
+              class: "btn btn-light rounded-pill shadow-sm" do
+
+              %i.bi.bi-plus-circle.me-2
+              Add lesson
+
+
+
+        .card-body.p-4
+
+
+          - if @lessons.any?
+
+            .list-group.list-group-flush
+
+              - @lessons.each do |lesson|
+
+                .mb-3
+
+                  = render 'lessons/lesson', lesson: lesson
+
+
+          - else
+
+            .text-center.text-muted.py-5
+
+              %i.bi.bi-journal-x.fs-1
+
+              %p.mt-3
+                Nenhuma aula cadastrada ainda.
+
+              = link_to "Adicionar primeira aula",
+                new_course_lesson_path(course_id: @course.id),
+                class: "btn btn-primary rounded-pill px-4"

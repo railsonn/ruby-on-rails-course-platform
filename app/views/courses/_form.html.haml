@@ -1,20 +1,10 @@
-.container.py-5
+.container-fluid.py-5
 
-  .row.justify-content-center
-    .col-lg-8
+  .row
 
-      .card.border-0.shadow-lg.rounded-4.overflow-hidden
+    .col-12
 
-        / Header
-        .p-4.text-white{style: "background: linear-gradient(135deg, #667eea, #764ba2);"}
-
-          %h2.fw-bold.mb-1
-            %i.bi.bi-mortarboard-fill.me-2
-            = t('courses.form.header')
-
-          %p.mb-0.opacity-75
-            Crie e configure as informações do curso
-
+      .card.border-0.shadow-lg.rounded-4.w-100
 
         .card-body.p-5
 
@@ -32,54 +22,54 @@
           = simple_form_for @course do |f|
 
             .mb-4
-= simple_form_for @course do |f|
-
-  .mb-4
-    = f.input :title,
-      label: t('courses.form.title'),
-      label_html: { class: "form-label fw-semibold" },
-      input_html: { class: "form-control form-control-lg rounded-3 shadow-sm", placeholder: "Digite o título do curso" }
+              = f.input :title,
+                label: t('courses.form.title'),
+                label_html: { class: "form-label fw-semibold" },
+                input_html: { class: "form-control form-control-lg rounded-3 shadow-sm w-100", placeholder: "Digite o título do curso" }
 
 
-  .mb-4
-    = f.input :short_description,
-      label: t('courses.form.short_description'),
-      input_html: { class: "form-control rounded-3 shadow-sm", rows: 3, placeholder: "Uma breve descrição do curso" }
-
-  .mb-4
-    = f.input :description,
-      as: :text,
-      label: t('courses.form.description'),
-      label_html: { class: "form-label fw-semibold" },
-      input_html: { class: "form-control rounded-3 shadow-sm", rows: 5, placeholder: "Descrição completa do curso" }
+            .mb-4
+              = f.input :short_description,
+                label: t('courses.form.short_description'),
+                label_html: { class: "form-label fw-semibold" },
+                input_html: { class: "form-control rounded-3 shadow-sm w-100", rows: 3, placeholder: "Uma breve descrição do curso" }
 
 
-  .row
-
-    .col-md-6.mb-4
-      = f.input :language,
-        collection: ["English", "Português", "Polski"],
-        label: t('courses.form.language'),
-        label_html: { class: "form-label fw-semibold" },
-        input_html: { class: "form-select rounded-3 shadow-sm" }
+            .mb-4
+              = f.input :description,
+                as: :text,
+                label: t('courses.form.description'),
+                label_html: { class: "form-label fw-semibold" },
+                input_html: { class: "form-control rounded-3 shadow-sm w-100", rows: 8, placeholder: "Descrição completa do curso" }
 
 
-    .col-md-6.mb-4
-      = f.input :level,
-        collection: ["Beginner", "Intermediate", "Advanced"],
-        label: t('courses.form.level'),
-        label_html: { class: "form-label fw-semibold" },
-        input_html: { class: "form-select rounded-3 shadow-sm" }
+            .row
+
+              .col-lg-6.mb-4
+                = f.input :language,
+                  collection: ["English", "Português", "Polski"],
+                  label: t('courses.form.language'),
+                  label_html: { class: "form-label fw-semibold" },
+                  input_html: { class: "form-select rounded-3 shadow-sm w-100" }
 
 
-  .mb-4
-    = f.input :price,
-      label: t('courses.form.price'),
-      label_html: { class: "form-label fw-semibold" },
-      input_html: { class: "form-control rounded-3 shadow-sm", placeholder: "R$ 0,00" }
+              .col-lg-6.mb-4
+                = f.input :level,
+                  collection: ["Beginner", "Intermediate", "Advanced"],
+                  label: t('courses.form.level'),
+                  label_html: { class: "form-label fw-semibold" },
+                  input_html: { class: "form-select rounded-3 shadow-sm w-100" }
 
 
-  .text-center.mt-4
-    = f.button :submit,
-      t('courses.form.submit'),
-      class: "btn btn-primary btn-lg px-5 rounded-pill shadow"
+            .mb-4
+              = f.input :price,
+                label: t('courses.form.price'),
+                label_html: { class: "form-label fw-semibold" },
+                input_html: { class: "form-control rounded-3 shadow-sm w-100", placeholder: "R$ 0,00" }
+
+
+            .text-center.mt-4
+
+              = f.button :submit,
+                t('courses.form.submit'),
+                class: "btn btn-primary btn-lg px-5 rounded-pill shadow"
