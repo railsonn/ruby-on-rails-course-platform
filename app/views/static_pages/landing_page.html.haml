@@ -1,30 +1,112 @@
-.container-fluid
-  %h1
-    hello world
-    
-  = link_to "Landing Page", static_pages_pivacy_policy_path
-  = link_to "home", home_index_path
+- content_for :title, "Página de exemplo"
 
-%h1
-  Example heading
-  %span.badge.text-bg-secondary New
-%h2
-  Example heading
-  %span.badge.text-bg-secondary New
-%h3
-  Example heading
-  %span.badge.text-bg-secondary New
-%h4
-  Example heading
-  %span.badge.text-bg-secondary New
-%h5
-  Example heading
-  %span.badge.text-bg-secondary New
-%h6
-  Example heading
-  %span.badge.text-bg-secondary New
-%button.btn.btn-primary{type: "button"}
-  Notifications
-  %span.badge.text-bg-secondary 4
+.container.py-5
 
-  
+  / Cabeçalho
+  .d-flex.flex-column.flex-md-row.justify-content-between.align-items-md-center.mb-5
+
+    .d-flex.align-items-center.mb-3.mb-md-0
+      .bg-primary-subtle.text-primary.rounded-circle.p-3.me-3
+        %i.bi.bi-house-door-fill.fs-3
+
+      %div
+        %h1.fw-bold.text-dark.mb-1
+          Hello World
+
+        %p.text-muted.mb-0
+          Página de demonstração dos componentes visuais.
+
+    .d-flex.gap-2
+      = link_to static_pages_pivacy_policy_path,
+        class: "btn btn-outline-primary rounded-pill px-4" do
+        %i.bi.bi-shield-check.me-2
+        Política de privacidade
+
+      = link_to home_index_path,
+        class: "btn btn-primary rounded-pill px-4" do
+        %i.bi.bi-house.me-2
+        Home
+
+  / Boas-vindas
+  .card.border-0.shadow-sm.overflow-hidden.mb-4
+    .card-header.border-0.text-white.p-4{ style: "background: linear-gradient(135deg, #0d6efd, #6610f2);" }
+      .d-flex.align-items-center
+        .bg-white.bg-opacity-25.rounded-circle.p-2.me-3
+          %i.bi.bi-stars.fs-5
+
+        %div
+          %small.text-white.opacity-75
+            Bem-vindo
+
+          %h4.mb-0.fw-bold
+            Componentes Bootstrap
+
+    .card-body.p-4.p-md-5
+      %p.text-muted.mb-0
+        Esta página apresenta alguns exemplos de títulos, badges e botões
+        utilizando o Bootstrap.
+
+  / Títulos
+  .card.border-0.shadow-sm.mb-4
+    .card-body.p-4.p-md-5
+
+      .d-flex.align-items-center.mb-4
+        .bg-primary-subtle.text-primary.rounded-circle.p-2.me-3
+          %i.bi.bi-type.fs-5
+
+        %div
+          %h4.fw-bold.text-dark.mb-1
+            Títulos
+
+          %p.text-muted.mb-0
+            Exemplos de headings com badges.
+
+      .border-bottom.pb-3.mb-3
+        %h1.fw-bold
+          Example heading
+          %span.badge.text-bg-secondary New
+
+      .border-bottom.pb-3.mb-3
+        %h2.fw-bold
+          Example heading
+          %span.badge.text-bg-secondary New
+
+      .border-bottom.pb-3.mb-3
+        %h3.fw-bold
+          Example heading
+          %span.badge.text-bg-secondary New
+
+      .border-bottom.pb-3.mb-3
+        %h4.fw-bold
+          Example heading
+          %span.badge.text-bg-secondary New
+
+      .border-bottom.pb-3.mb-3
+        %h5.fw-bold
+          Example heading
+          %span.badge.text-bg-secondary New
+
+      %h6.fw-bold.mb-0
+        Example heading
+        %span.badge.text-bg-secondary New
+
+  / Notificações
+  .card.border-0.shadow-sm
+    .card-body.p-4.p-md-5
+
+      .d-flex.align-items-center.mb-4
+        .bg-primary-subtle.text-primary.rounded-circle.p-2.me-3
+          %i.bi.bi-bell-fill.fs-5
+
+        %div
+          %h4.fw-bold.text-dark.mb-1
+            Notificações
+
+          %p.text-muted.mb-0
+            Exemplo de botão com contador.
+
+      %button.btn.btn-primary.rounded-pill.px-4.py-2.fw-semibold.shadow-sm{ type: "button" }
+        %i.bi.bi-bell.me-2
+        Notifications
+        %span.badge.text-bg-secondary.ms-2
+          4
