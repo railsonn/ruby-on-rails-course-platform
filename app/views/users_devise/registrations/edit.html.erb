@@ -1,35 +1,122 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+- content_for :title, "Configurações da conta"
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+.container.py-5
+  .row.justify-content-center
+    .col-12.col-lg-8
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+      / Cabeçalho
+      .text-center.mb-5
+        .d-inline-flex.align-items-center.justify-content-center.bg-primary-subtle.text-primary.rounded-circle.p-3.mb-3
+          %i.bi.bi-person-gear.fs-3
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+        %h1.fw-bold.text-dark.mb-2
+          Configurações da conta
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+        %p.text-muted.mb-0
+          Atualize seus dados e as configurações de acesso.
+
+      / Dados da conta
+      .card.border-0.shadow-sm.overflow-hidden.mb-4
+
+        .card-header.border-0.text-white.p-4{ style: "background: linear-gradient(135deg, #0d6efd, #6610f2);" }
+
+          .d-flex.align-items-center
+            .bg-white.bg-opacity-25.rounded-circle.p-2.me-3
+              %i.bi.bi-person-circle.fs-5
+
+            %div
+              %small.text-white.opacity-75
+                Conta
+
+              %h5.mb-0.fw-bold
+                Editar informações
+
+        .card-body.p-4.p-md-5
+
+          = simple_form_for(resource,
+            as: resource_name,
+            url: registration_path(resource_name),
+            html: { method: :put }) do |f|
+
+            = f.error_notification
+
+            / E-mail
+            .mb-3
+              = f.input :email,
+                label: "E-mail",
                 required: true,
-                input_html: { autocomplete: "current-password" } %>
-  </div>
+                autofocus: true,
+                input_html: { autocomplete: "email" }
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
+            / Confirmação pendente
+            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+              .alert.alert-warning.border-0.rounded-3.d-flex.align-items-center
+                %i.bi.bi-exclamation-triangle-fill.me-2
 
-<h3>Cancel my account</h3>
+                %div
+                  %strong Confirmação pendente
+                  %div.small
+                    Aguardando confirmação para:
+                    = resource.unconfirmed_email
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+            %hr.my-4
 
-<%= link_to "Back", :back %>
+            / Nova senha
+            = f.input :password,
+              label: "Nova senha",
+              hint: "Deixe em branco caso não queira alterar sua senha.",
+              required: false,
+              input_html: { autocomplete: "new-password" }
+
+            / Confirmação da senha
+            = f.input :password_confirmation,
+              label: "Confirmar nova senha",
+              required: false,
+              input_html: { autocomplete: "new-password" }
+
+            / Senha atual
+            = f.input :current_password,
+              label: "Senha atual",
+              hint: "Informe sua senha atual para confirmar as alterações.",
+              required: true,
+              input_html: { autocomplete: "current-password" }
+
+            %hr.my-4
+
+            .d-flex.flex-column.flex-sm-row.justify-content-end.gap-2
+
+              = link_to :back,
+                class: "btn btn-outline-secondary rounded-pill px-4" do
+                %i.bi.bi-arrow-left.me-2
+                Voltar
+
+              = f.button :submit,
+                "Salvar alterações",
+                class: "btn btn-primary rounded-pill px-4 fw-semibold" do
+                %i.bi.bi-check-lg.me-2
+                Salvar alterações
+
+      / Cancelamento da conta
+      .card.border-0.shadow-sm
+
+        .card-body.p-4
+
+          .d-flex.align-items-start
+            .bg-danger-subtle.text-danger.rounded-circle.p-2.me-3
+              %i.bi.bi-exclamation-triangle-fill
+
+            %div.flex-grow-1
+              %h5.fw-bold.text-dark.mb-1
+                Cancelar minha conta
+
+              %p.text-muted.mb-3
+                Se você não deseja mais utilizar a conta, pode removê-la permanentemente.
+
+              = button_to registration_path(resource_name),
+                method: :delete,
+                data: {
+                  turbo_confirm: "Tem certeza que deseja cancelar sua conta?"
+                },
+                class: "btn btn-outline-danger rounded-pill px-4" do
+                %i.bi.bi-trash3.me-2
+                Cancelar minha conta

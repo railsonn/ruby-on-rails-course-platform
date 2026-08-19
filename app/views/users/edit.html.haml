@@ -29,7 +29,7 @@
               %small.text-white.opacity-75
                 Usuário
 
-              %h5.mb-0.fw-bold
+              %h5.mb-0.fw-bold.text-break
                 = @user.email
 
         / Formulário
@@ -44,22 +44,38 @@
               %p.text-muted.small.mb-0
                 Selecione as funções que deseja atribuir a este usuário.
 
+            / Roles
             .bg-light.rounded-3.p-4.mb-4
 
-              = f.collection_check_boxes :role_ids, Role.all, :id, :name do |role|
-                .form-check.mb-3
-                  = role.check_box(class: "form-check-input")
-                  = role.label(class: "form-check-label fw-semibold")
+              - if Role.exists?
+                = f.collection_check_boxes :role_ids, Role.all, :id, :name do |role|
+
+                  .form-check.d-flex.align-items-center.p-3.mb-2.bg-white.rounded-3.border
+                    = role.check_box(
+                      class: "form-check-input mt-0 me-3"
+                    )
+
+                    = role.label(
+                      class: "form-check-label fw-semibold text-dark flex-grow-1"
+                    )
+
+              - else
+                .text-center.py-3
+                  %i.bi.bi-shield-x.text-muted.fs-3
+
+                  %p.text-muted.mb-0
+                    Nenhuma função disponível.
 
             = f.error :roles, class: "text-danger small mb-3"
 
             %hr.my-4
 
-            .d-flex.flex-column.flex-sm-row.justify-content-end.gap-2
+            / Ações
+            .d-flex.flex-column.flex-sm-row.justify-content-between.gap-2
 
               = link_to users_path,
                 class: "btn btn-outline-secondary rounded-pill px-4" do
-                %i.bi.bi-x-lg.me-2
+                %i.bi.bi-arrow-left.me-2
                 Cancelar
 
               = f.button :submit,

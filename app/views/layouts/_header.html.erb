@@ -1,121 +1,202 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom shadow-sm">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">
-      <i class="bi bi-gem me-1"></i>
-      <%= t('navbar.brand') %>
-    </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- MARCA -->
+    <%= link_to root_path, class: "navbar-brand fw-bold d-flex align-items-center" do %>
+      <span class="bg-primary-subtle text-primary rounded-circle p-2 me-2">
+        <i class="bi bi-gem"></i>
+      </span>
+
+      <%= t("navbar.brand") %>
+    <% end %>
+
+    <!-- BOTÃO MOBILE -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Alternar navegação">
+
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- LINKS PADRÃO -->
+
+      <!-- LINKS -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item" if current_page?(root_path)>
-          <%= link_to home_index_path, class: 'nav-link active' do %>
+
+        <!-- HOME -->
+        <li class="nav-item">
+          <%= link_to home_index_path,
+            class: "nav-link #{'active fw-semibold' if current_page?(home_index_path) || current_page?(root_path)}" do %>
+
             <i class="bi bi-house me-1"></i>
-            <%= t('navbar.links.home') %>
+            <%= t("navbar.links.home") %>
+
           <% end %>
         </li>
 
-        <li class="nav-item" if current_page?(courses_path)>
-          <%= link_to courses_path(@course), class: 'nav-link active' do %>
+        <!-- CURSOS -->
+        <li class="nav-item">
+          <%= link_to courses_path,
+            class: "nav-link #{'active fw-semibold' if current_page?(courses_path)}" do %>
+
             <i class="bi bi-journal-bookmark me-1"></i>
-            <%= t('navbar.links.courses') %>
+            <%= t("navbar.links.courses") %>
+
           <% end %>
         </li>
 
-        <li class="nav-item" if current_page?(new_course_path)>
-          <%= link_to new_course_path, class: 'nav-link active' do %>
+        <!-- NOVO CURSO -->
+        <li class="nav-item">
+          <%= link_to new_course_path,
+            class: "nav-link #{'active fw-semibold' if current_page?(new_course_path)}" do %>
+
             <i class="bi bi-plus-circle me-1"></i>
-            <%= t('navbar.links.new_course') %>
+            <%= t("navbar.links.new_course") %>
+
           <% end %>
         </li>
 
-        <li class="nav-item" if current_page?(users_path)>
-          <%= link_to users_path, class: 'nav-link active' do %>
+        <!-- USUÁRIOS -->
+        <li class="nav-item">
+          <%= link_to users_path,
+            class: "nav-link #{'active fw-semibold' if current_page?(users_path)}" do %>
+
             <i class="bi bi-people me-1"></i>
-            <%= t('navbar.links.users') %>
+            <%= t("navbar.links.users") %>
+
           <% end %>
         </li>
+
+        <!-- ATIVIDADE -->
+        <li class="nav-item">
+          <%= link_to home_activity_path,
+            class: "nav-link #{'active fw-semibold' if current_page?(home_activity_path)}" do %>
+
+            <i class="bi bi-activity me-1"></i>
+            <%= t("navbar.links.activity") %>
+
+          <% end %>
+        </li>
+
       </ul>
 
-      <!-- SEARCH IN NAVBAR -->
+      <!-- PESQUISA -->
       <% if defined?(@ransack_courses) && @ransack_courses.present? %>
-        <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
-          <div class="input-group">
-            <%= f.search_field :title_cont,
-              class: "form-control-sm",
-              style: "float: left; width: 150px;",
-              placeholder: t('navbar.search.placeholder'),
-              autocomplete: "off" %>
 
-            <span class="input-group-append">
-              <button type="submit" class="btn btn-primary btn-sm">
+        <div class="me-lg-3 mb-3 mb-lg-0">
+
+          <%= search_form_for @ransack_courses,
+            as: :courses_search,
+            url: courses_path do |f| %>
+
+            <div class="input-group">
+
+              <%= f.search_field :title_cont,
+                class: "form-control",
+                placeholder: t("navbar.search.placeholder"),
+                autocomplete: "off",
+                style: "max-width: 220px;" %>
+
+              <button type="submit" class="btn btn-primary">
                 <i class="bi bi-search me-1"></i>
-                <span aria-hidden="true"><%= t('navbar.search.button') %></span>
+                <%= t("navbar.search.button") %>
               </button>
-            </span>
-          </div>
-        <% end %>
 
-        <ul class="navbar-nav mr-right">
-          <li class="nav-item" if current_page?(home_activity_path)>
-            <%= link_to home_activity_path, class: 'nav-link active' do %>
-              <i class="bi bi-activity me-1"></i>
-              <%= t('navbar.links.activity') %>
-            <% end %>
+            </div>
+
+          <% end %>
+
+        </div>
+
+      <% end %>
+
+      <!-- USUÁRIO -->
+      <% if current_user %>
+
+        <ul class="navbar-nav">
+
+          <li class="nav-item dropdown">
+
+            <a
+              class="nav-link dropdown-toggle d-flex align-items-center"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false">
+
+              <span class="bg-primary-subtle text-primary rounded-circle p-2 me-2">
+                <i class="bi bi-person-circle"></i>
+              </span>
+
+              <span class="text-truncate" style="max-width: 180px;">
+                <%= current_user.email %>
+              </span>
+
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+
+              <li>
+                <%= link_to edit_user_registration_path,
+                  class: "dropdown-item py-2" do %>
+
+                  <i class="bi bi-gear me-2"></i>
+                  <%= t("navbar.user.account") %>
+
+                <% end %>
+              </li>
+
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+
+              <li>
+                <%= button_to destroy_user_session_path,
+                  method: :delete,
+                  class: "dropdown-item text-danger py-2" do %>
+
+                  <i class="bi bi-box-arrow-right me-2"></i>
+                  <%= t("navbar.user.logout") %>
+
+                <% end %>
+              </li>
+
+            </ul>
+
           </li>
 
-          <li class="nav-item <%= 'active font-weight-bold' if current_page?(root_path) %>">
-            <%= link_to root_path, class: "nav-link" do %>
-              <i class="bi bi-house-door me-1"></i>
-              <%= t('navbar.links.home') %>
-            <% end %>
-          </li>
         </ul>
 
-        <!-- DROPDOWN DO USUÁRIO -->
-        <% if current_user %>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-circle me-1"></i>
-                <%= current_user.email %>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                  <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
-                    <i class="bi bi-gear me-1"></i>
-                    <%= t('navbar.user.account') %>
-                  <% end %>
-                </li>
-                <li>
-                  <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" do %>
-                    <i class="bi bi-box-arrow-right me-1"></i>
-                    <%= t('navbar.user.logout') %>
-                  <% end %>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        <% end %>
-
       <% else %>
-        <!-- QUANDO NÃO ESTÁ LOGADO -->
-        <div class="d-flex">
-          <%= link_to new_user_session_path, class: "btn btn-outline-primary me-2" do %>
+
+        <!-- NÃO AUTENTICADO -->
+        <div class="d-flex flex-column flex-lg-row gap-2">
+
+          <%= link_to new_user_session_path,
+            class: "btn btn-outline-primary rounded-pill px-3" do %>
+
             <i class="bi bi-box-arrow-in-right me-1"></i>
-            <%= t('navbar.auth.login') %>
+            <%= t("navbar.auth.login") %>
+
           <% end %>
 
-          <%= link_to new_user_registration_path, class: "btn btn-primary" do %>
+          <%= link_to new_user_registration_path,
+            class: "btn btn-primary rounded-pill px-3" do %>
+
             <i class="bi bi-person-plus me-1"></i>
-            <%= t('navbar.auth.register') %>
+            <%= t("navbar.auth.register") %>
+
           <% end %>
+
         </div>
+
       <% end %>
+
     </div>
   </div>
 </nav>
