@@ -1,47 +1,132 @@
-<h1>StaticPages#pivacy_policy</h1>
-<p>Find me in app/views/static_pages/pivacy_policy.html.erb</p>
-<%= link_to "pagina inicial", root_path %>
+<% content_for :title, "Política de Privacidade" %>
 
+<div class="container py-5">
 
+  <!-- Cabeçalho -->
+  <div class="text-center mb-5">
+    <div class="d-inline-flex align-items-center justify-content-center
+                bg-primary-subtle text-primary rounded-circle p-3 mb-3">
+      <i class="bi bi-shield-check fs-2"></i>
+    </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">
-    <i class="fas fa-flag"></i>
-    Brand
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <%= link_to root_path, class: "nav-link #{'active font-weight-bold' if current_page?(root_path)}" do %>
-        <div class="fa fa-home"></div>
-        Home
-      <% end %>
-    </ul>
-    <ul class="navbar-nav mr-right">
-      <% if current_user %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="fa fa-user"></div>
-            <b><%= current_user.email %></b>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to edit_user_registration_path, class: "dropdown-item #{'active font-weight-bold' if current_page?(edit_user_registration_path)}" do %>
-              <div class="fa fa-cog"></div>
-              <b>Account settings</b>
-            <% end %>
-            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
-              <div class="fa fa-sign-out-alt"></div>
-              <b>Sign out</b>
-            <% end %>
-          </div>
-        </li>
-      <% else %>
-        <%= link_to "Log in", new_user_session_path, class: "nav-link #{'active font-weight-bold' if current_page?(new_user_session_path)}" %>
-        <%= link_to "Sign up", new_user_registration_path, class: "nav-link #{'active font-weight-bold' if current_page?(new_user_registration_path)}" %>
-      <% end %>
-    </ul>
+    <h1 class="fw-bold text-dark mb-2">
+      Política de Privacidade
+    </h1>
+
+    <p class="text-muted mb-0">
+      Saiba como suas informações são utilizadas e protegidas.
+    </p>
   </div>
-</nav>
 
+  <!-- Conteúdo -->
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-9">
+
+      <div class="card border-0 shadow-sm overflow-hidden">
+
+        <!-- Cabeçalho do card -->
+        <div class="card-header border-0 text-white p-4"
+             style="background: linear-gradient(135deg, #0d6efd, #6610f2);">
+
+          <div class="d-flex align-items-center">
+            <div class="bg-white bg-opacity-25 rounded-circle p-2 me-3">
+              <i class="bi bi-lock-fill fs-5"></i>
+            </div>
+
+            <div>
+              <small class="text-white opacity-75">
+                Segurança e privacidade
+              </small>
+
+              <h5 class="mb-0 fw-bold">
+                Sua privacidade é importante
+              </h5>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Corpo -->
+        <div class="card-body p-4 p-md-5">
+
+          <div class="d-flex align-items-start mb-4">
+            <i class="bi bi-info-circle-fill text-primary fs-4 me-3"></i>
+
+            <div>
+              <h5 class="fw-bold text-dark">
+                Sobre esta política
+              </h5>
+
+              <p class="text-muted mb-0">
+                Esta página apresenta as informações relacionadas à
+                privacidade e ao tratamento de dados utilizados pela
+                aplicação.
+              </p>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <h5 class="fw-bold text-dark mb-3">
+            Proteção de dados
+          </h5>
+
+          <p class="text-muted">
+            Buscamos utilizar as informações dos usuários de maneira
+            responsável, respeitando os princípios de segurança,
+            privacidade e proteção de dados.
+          </p>
+
+          <h5 class="fw-bold text-dark mt-4 mb-3">
+            Utilização das informações
+          </h5>
+
+          <p class="text-muted">
+            Os dados fornecidos podem ser utilizados para permitir o
+            funcionamento adequado dos recursos da aplicação, melhorar
+            a experiência do usuário e oferecer os serviços disponíveis.
+          </p>
+
+          <h5 class="fw-bold text-dark mt-4 mb-3">
+            Segurança
+          </h5>
+
+          <p class="text-muted mb-0">
+            Adotamos medidas técnicas e organizacionais para ajudar a
+            proteger as informações contra acesso não autorizado,
+            alteração ou divulgação indevida.
+          </p>
+
+        </div>
+
+        <!-- Rodapé -->
+        <div class="card-footer bg-white border-0 p-4">
+
+          <div class="d-flex flex-column flex-md-row
+                      justify-content-between align-items-center gap-3">
+
+            <%= link_to root_path,
+                class: "btn btn-outline-secondary rounded-pill px-4" do %>
+              <i class="bi bi-arrow-left me-2"></i>
+              Página inicial
+            <% end %>
+
+            <% if current_user %>
+
+              <div class="text-muted small">
+                <i class="bi bi-person-circle me-1"></i>
+                <%= current_user.email %>
+              </div>
+
+            <% end %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
