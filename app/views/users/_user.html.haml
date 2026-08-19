@@ -1,75 +1,136 @@
-.card.shadow-lg.p-3.mt-3.mx-auto.border-0{ style: "max-width: 600px; background: linear-gradient(135deg, #6f42c1, #0d6efd); color: white; border-radius: 16px;" }
+.card.h-100.shadow-sm.border-0.overflow-hidden.mx-auto{ style: "max-width: 600px;" }
 
-  .card-header.border-0{ style: "font-size: 1rem; font-weight: bold; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 12px;" }
-    %i.bi.bi-person-circle.me-2
-    - if user.online?
-      %i.bi.bi-circle-fill.text-success.me-1
-      = t("users.card.status.online")
-    - else 
-      %i.bi.bi-circle-fill.text-danger.me-1
-      = t("users.card.status.offline")
-    = link_to user.email, user_path(user)
+  / Cabeçalho
+  .card-header.border-0.text-white.p-4{ style: "background: linear-gradient(135deg, #6f42c1, #0d6efd);" }
 
+    .d-flex.align-items-center.justify-content-between
 
-  .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
-    %i.bi.bi-calendar-check.me-1
-    %span.fw-bold.me-1= t("users.card.signed_up")
-    %span= time_ago_in_words(user.created_at)
-    = t("users.card.ago")
+      .d-flex.align-items-center
+        .bg-white.bg-opacity-25.rounded-circle.p-2.me-3
+          %i.bi.bi-person-circle.fs-4
 
+        %div
+          %small.text-white.opacity-75
+            Usuário
 
-  .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
+          %h5.mb-1.fw-bold
+            = link_to user.email,
+              user_path(user),
+              class: "text-white text-decoration-none"
 
-    .row.mb-1
-      .col-6.fw-bold
-        %i.bi.bi-box-arrow-in-right.me-1
-        = t("users.card.fields.sign_in_count")
-      .col-6.text-end= user.sign_in_count
+          - if user.online?
+            %span.badge.bg-success.bg-opacity-75
+              %i.bi.bi-circle-fill.me-1
+              = t("users.card.status.online")
+          - else
+            %span.badge.bg-danger.bg-opacity-75
+              %i.bi.bi-circle-fill.me-1
+              = t("users.card.status.offline")
 
-    .row.mb-1
-      .col-6.fw-bold
-        %i.bi.bi-clock-history.me-1
-        = t("users.card.fields.current_sign_in_at")
-      .col-6.text-end= = user.current_sign_in_at.present? ? l(user.current_sign_in_at) : "Nunca fez login"
+  / Informações da conta
+  .card-body.p-4
 
-    .row.mb-1
-      .col-6.fw-bold
-        %i.bi.bi-clock.me-1
-        = t("users.card.fields.last_sign_in_at")
-      .col-6.text-end= = user.current_sign_in_at.present? ? l(user.last_sign_in_at) : "Nunca fez login"  
+    .d-flex.align-items-center.mb-3
+      .bg-primary-subtle.text-primary.rounded-circle.p-2.me-3
+        %i.bi.bi-calendar-check
 
-    .row.mb-1
-      .col-6.fw-bold
-        %i.bi.bi-pc-display.me-1
-        = t("users.card.fields.current_sign_in_ip")
-      .col-6.text-end= user.current_sign_in_ip
+      %div
+        %small.text-muted
+          = t("users.card.signed_up")
 
-    .row
-      .col-6.fw-bold
-        %i.bi.bi-hdd-network.me-1
-        = t("users.card.fields.last_sign_in_ip")
-      .col-6.text-end= user.last_sign_in_ip
+        %div.fw-semibold.text-dark
+          = time_ago_in_words(user.created_at)
+          = t("users.card.ago")
 
+    %hr.my-4
 
-  .card-footer.mt-2.border-0{ style: "background: rgba(255,255,255,0.08); border-radius: 10px; padding: 6px 10px;" }
-    %i.bi.bi-patch-check.me-1
-    %span.fw-bold.me-1= t("users.card.confirmation.label")
-    - if user.confirmed_at.present?
-      %span.badge.bg-success
-        %i.bi.bi-check-circle.me-1
-        = t("users.card.confirmation.yes")
-    - else
-      %span.badge.bg-danger
-        %i.bi.bi-x-circle.me-1
-        = t("users.card.confirmation.no")
+    / Atividade
+    %h6.fw-bold.text-dark.mb-3
+      %i.bi.bi-activity.me-2.text-primary
+      Atividade da conta
 
+    .row.g-3
 
-  .card-footer
-    - user.roles.each do |role|
-      .badge.badge-info
-        %i.bi.bi-shield-lock.me-1
-        = t("roles.#{role.name}", default: role.name)
-    - if policy(user).edit?
-      = link_to edit_user_path(user), class: 'btn btn-sm btn-warning' do
-        %i.bi.bi-pencil-square.me-1
-        = t("users.card.actions.edit_roles")
+      .col-12.col-md-6
+        .bg-light.rounded-3.p-3.h-100
+          %small.text-muted.d-block
+            %i.bi.bi-box-arrow-in-right.me-1
+            = t("users.card.fields.sign_in_count")
+
+          %span.fw-bold.fs-5
+            = user.sign_in_count
+
+      .col-12.col-md-6
+        .bg-light.rounded-3.p-3.h-100
+          %small.text-muted.d-block
+            %i.bi.bi-clock-history.me-1
+            = t("users.card.fields.current_sign_in_at")
+
+          %span.fw-semibold
+            = user.current_sign_in_at.present? ? l(user.current_sign_in_at) : "Nunca fez login"
+
+      .col-12.col-md-6
+        .bg-light.rounded-3.p-3.h-100
+          %small.text-muted.d-block
+            %i.bi.bi-clock.me-1
+            = t("users.card.fields.last_sign_in_at")
+
+          %span.fw-semibold
+            = user.last_sign_in_at.present? ? l(user.last_sign_in_at) : "Nunca fez login"
+
+      .col-12.col-md-6
+        .bg-light.rounded-3.p-3.h-100
+          %small.text-muted.d-block
+            %i.bi.bi-pc-display.me-1
+            = t("users.card.fields.current_sign_in_ip")
+
+          %span.fw-semibold
+            = user.current_sign_in_ip || "Não disponível"
+
+      .col-12.col-md-6
+        .bg-light.rounded-3.p-3.h-100
+          %small.text-muted.d-block
+            %i.bi.bi-hdd-network.me-1
+            = t("users.card.fields.last_sign_in_ip")
+
+          %span.fw-semibold
+            = user.last_sign_in_ip || "Não disponível"
+
+    %hr.my-4
+
+    / Confirmação
+    .d-flex.align-items-center.justify-content-between.flex-wrap.gap-2
+      .d-flex.align-items-center
+        .bg-primary-subtle.text-primary.rounded-circle.p-2.me-2
+          %i.bi.bi-patch-check
+
+        %span.fw-semibold
+          = t("users.card.confirmation.label")
+
+      - if user.confirmed_at.present?
+        %span.badge.text-bg-success.rounded-pill.px-3.py-2
+          %i.bi.bi-check-circle.me-1
+          = t("users.card.confirmation.yes")
+      - else
+        %span.badge.text-bg-danger.rounded-pill.px-3.py-2
+          %i.bi.bi-x-circle.me-1
+          = t("users.card.confirmation.no")
+
+  / Rodapé
+  .card-footer.bg-white.border-0.p-4
+
+    .d-flex.flex-column.flex-md-row.align-items-md-center.justify-content-between.gap-3
+
+      / Funções
+      .d-flex.flex-wrap.gap-2
+        - user.roles.each do |role|
+          %span.badge.text-bg-primary.rounded-pill.px-3.py-2
+            %i.bi.bi-shield-lock.me-1
+            = t("roles.#{role.name}", default: role.name)
+
+      / Ações
+      - if policy(user).edit?
+        = link_to edit_user_path(user),
+          class: "btn btn-warning btn-sm rounded-pill px-3 fw-semibold" do
+          %i.bi.bi-pencil-square.me-1
+          = t("users.card.actions.edit_roles")
