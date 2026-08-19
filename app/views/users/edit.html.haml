@@ -1,12 +1,69 @@
-.card
-  .card-header
-    Editing roles for
-    = @user.email
-  .card-body
-    = simple_form_for @user do |f|
-      = f.collection_check_boxes :role_ids, Role.all, :id, :name
-      = f.error :roles, class: 'text-danger'
-      %hr
-      = f.button :submit, class: "btn btn-success"
-  .card-footer
-    = link_to 'Cancel', users_path, class: 'btn btn-danger'
+- content_for :title, "Editar permissões"
+
+.container.py-5
+  .row.justify-content-center
+    .col-12.col-lg-7
+
+      / Cabeçalho
+      .text-center.mb-4
+        .d-inline-flex.align-items-center.justify-content-center.bg-primary-subtle.text-primary.rounded-circle.p-3.mb-3
+          %i.bi.bi-shield-lock.fs-3
+
+        %h1.fw-bold.text-dark.mb-2
+          Editar permissões
+
+        %p.text-muted.mb-0
+          Gerencie as funções e permissões deste usuário.
+
+      / Card
+      .card.border-0.shadow-sm.overflow-hidden
+
+        / Cabeçalho
+        .card-header.border-0.text-white.p-4{ style: "background: linear-gradient(135deg, #6f42c1, #0d6efd);" }
+
+          .d-flex.align-items-center
+            .bg-white.bg-opacity-25.rounded-circle.p-2.me-3
+              %i.bi.bi-person-gear.fs-5
+
+            %div
+              %small.text-white.opacity-75
+                Usuário
+
+              %h5.mb-0.fw-bold
+                = @user.email
+
+        / Formulário
+        .card-body.p-4.p-md-5
+
+          = simple_form_for @user do |f|
+
+            .mb-4
+              %h5.fw-bold.text-dark.mb-1
+                Funções do usuário
+
+              %p.text-muted.small.mb-0
+                Selecione as funções que deseja atribuir a este usuário.
+
+            .bg-light.rounded-3.p-4.mb-4
+
+              = f.collection_check_boxes :role_ids, Role.all, :id, :name do |role|
+                .form-check.mb-3
+                  = role.check_box(class: "form-check-input")
+                  = role.label(class: "form-check-label fw-semibold")
+
+            = f.error :roles, class: "text-danger small mb-3"
+
+            %hr.my-4
+
+            .d-flex.flex-column.flex-sm-row.justify-content-end.gap-2
+
+              = link_to users_path,
+                class: "btn btn-outline-secondary rounded-pill px-4" do
+                %i.bi.bi-x-lg.me-2
+                Cancelar
+
+              = f.button :submit,
+                "Salvar alterações",
+                class: "btn btn-success rounded-pill px-4 fw-semibold" do
+                %i.bi.bi-check-lg.me-2
+                Salvar alterações

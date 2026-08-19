@@ -1,41 +1,91 @@
-%h3
-  .text-center
-    %i.bi.bi-people-fill.mr-2
-    User
-    .badge.badge-info
-      %i.bi.bi-hash.mr-1
+- content_for :title, "Usuários"
+
+.container.py-5
+
+  / Cabeçalho
+  .d-flex.flex-column.flex-md-row.justify-content-between.align-items-md-center.mb-5
+
+    .d-flex.align-items-center.mb-3.mb-md-0
+      .bg-primary-subtle.text-primary.rounded-circle.p-3.me-3
+        %i.bi.bi-people-fill.fs-3
+
+      %div
+        %h1.fw-bold.text-dark.mb-1
+          Usuários
+
+        %p.text-muted.mb-0
+          Gerencie os usuários cadastrados na aplicação.
+
+    %span.badge.text-bg-primary.rounded-pill.px-3.py-2.fs-6
+      %i.bi.bi-hash.me-1
       = @users.count
 
-.container.mt-4
-  .row.mb-3
-    .col-12
-      .card.shadow-sm
-        .card-body
-          = search_form_for @q, url: users_path, method: :get, class: 'form-inline flex-wrap' do |f|
-            .form-group.mb-2.mr-2
-              = f.search_field :email_cont,
-                class: 'form-control',
-                placeholder: 'Email'
+  / Pesquisa
+  .card.border-0.shadow-sm.mb-4
+    .card-body.p-4
 
-            .form-group.mb-2.mr-2
-              = f.search_field :sign_in_count_eq,
-                class: 'form-control',
-                placeholder: 'Sign in count'
+      .d-flex.align-items-center.mb-4
+        .bg-light.rounded-circle.p-2.me-3
+          %i.bi.bi-search.text-primary.fs-5
 
-            .form-group.mb-2.mr-2
-              = f.search_field :email_or_sign_in_count_eq,
-                class: 'form-control',
-                placeholder: 'Email ou Sign in count'
+        %div
+          %h5.fw-bold.text-dark.mb-1
+            Buscar usuários
 
-            .form-group.mb-2
-              = f.submit 'Buscar', class: 'btn btn-primary mr-2'
+          %p.text-muted.small.mb-0
+            Utilize os campos abaixo para filtrar os usuários.
 
-            = link_to users_path, class: 'btn btn-outline-secondary mb-2' do
-              %i.bi.bi-arrow-clockwise.mr-1
-              Refresh
+      = search_form_for @q,
+        url: users_path,
+        method: :get do |f|
 
-  .row
-    .col-12
-      .card-columns
-        - @users.each do |user|
-          = render 'users/user', user: user
+        .row.g-3
+
+          .col-12.col-md-6.col-lg-4
+            = f.search_field :email_cont,
+              class: "form-control rounded-3",
+              placeholder: "Email"
+
+          .col-12.col-md-6.col-lg-4
+            = f.search_field :sign_in_count_eq,
+              class: "form-control rounded-3",
+              placeholder: "Quantidade de logins"
+
+          .col-12.col-lg-4
+            = f.search_field :email_or_sign_in_count_eq,
+              class: "form-control rounded-3",
+              placeholder: "Email ou quantidade de logins"
+
+          .col-12
+            .d-flex.flex-column.flex-sm-row.gap-2
+
+              = f.submit "Buscar",
+                class: "btn btn-primary rounded-pill px-4 fw-semibold" do
+                %i.bi.bi-search.me-2
+                Buscar
+
+              = link_to users_path,
+                class: "btn btn-outline-secondary rounded-pill px-4" do
+                %i.bi.bi-arrow-clockwise.me-2
+                Limpar filtros
+
+  / Lista de usuários
+  .row.g-4
+    - if @users.any?
+      - @users.each do |user|
+        .col-12.col-md-6.col-xl-4
+          = render "users/user", user: user
+
+    - else
+      .col-12
+        .card.border-0.shadow-sm
+          .card-body.text-center.py-5
+
+            .bg-primary-subtle.text-primary.rounded-circle.d-inline-flex.p-4.mb-3
+              %i.bi.bi-person-x.fs-1
+
+            %h4.fw-bold.text-dark
+              Nenhum usuário encontrado
+
+            %p.text-muted.mb-0
+              Não encontramos usuários para os filtros informados.
