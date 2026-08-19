@@ -45,14 +45,7 @@
       .row.g-4
         - @lessons.each do |lesson|
           .col-12.col-md-6.col-xl-4
-            .card.h-100.border-0.shadow-sm.overflow-hidden
-              = render lesson
-
-              .card-footer.bg-white.border-0.p-3.pt-0
-                = link_to [@course, lesson],
-                  class: "btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold" do
-                  %i.bi.bi-eye.me-1
-                  = t("lessons.index.show")
+            = render lesson
 
     - else
       .card.border-0.shadow-sm
