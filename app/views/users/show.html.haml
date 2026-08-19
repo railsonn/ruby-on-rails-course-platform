@@ -1,1 +1,26 @@
-= render 'users/user', user: @user
+- content_for :title, @user.email
+
+.container.py-5
+  .row.justify-content-center
+    .col-12.col-lg-7
+
+      / Cabeçalho
+      .text-center.mb-4
+        .d-inline-flex.align-items-center.justify-content-center.bg-primary-subtle.text-primary.rounded-circle.p-3.mb-3
+          %i.bi.bi-person-circle.fs-3
+
+        %h1.fw-bold.text-dark.mb-2
+          Perfil do usuário
+
+        %p.text-muted.mb-0
+          Informações e detalhes da conta.
+
+      / Card do usuário
+      = render "users/user", user: @user
+
+      / Navegação
+      .d-flex.justify-content-center.mt-4
+        = link_to users_path,
+          class: "btn btn-outline-secondary rounded-pill px-4" do
+          %i.bi.bi-arrow-left.me-2
+          Voltar para usuários
