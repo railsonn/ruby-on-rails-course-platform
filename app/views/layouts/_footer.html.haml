@@ -1,24 +1,78 @@
-%hr
-%footer
-  .container
-    .row
-      .col-md-4
-        = t('footer.copyright')
+%footer.bg-dark.text-white.mt-5
+  .container.py-5
+    .row.g-4
+
+      / Informações
+      .col-12.col-md-4
+        .d-flex.align-items-center.mb-3
+          .bg-primary.bg-opacity-25.text-primary.rounded-circle.p-2.me-2
+            %i.bi.bi-gem
+
+          %h5.fw-bold.mb-0
+            = t("footer.company")
+
+        %p.text-white-50.small.mb-3
+          = t("footer.copyright")
+          ©
+          = Time.current.year
+          = t("footer.company")
+
+        .d-flex.align-items-center
+          %i.bi.bi-envelope.me-2.text-primary
+          = mail_to "yashm@outlook.com",
+            "yashm@outlook.com",
+            class: "text-white text-decoration-none"
+
+      / Links
+      .col-12.col-md-4
+        %h6.text-uppercase.fw-bold.mb-3
+          %i.bi.bi-link-45deg.me-2.text-primary
+          Links
+
+        %ul.list-unstyled.mb-0
+
+          %li.mb-2
+            = link_to t("footer.links.privacy_policy"),
+              static_pages_pivacy_policy_path,
+              class: "text-white-50 text-decoration-none footer-link"
+
+          %li.mb-2
+            = link_to t("footer.links.terms"),
+              "#",
+              class: "text-white-50 text-decoration-none footer-link"
+
+      / Ações
+      .col-12.col-md-4
+        %h6.text-uppercase.fw-bold.mb-3
+          %i.bi.bi-compass.me-2.text-primary
+          Navegação
+
+        %ul.list-unstyled.mb-0
+
+          %li.mb-2
+            = link_to root_path,
+              class: "text-white-50 text-decoration-none footer-link" do
+              %i.bi.bi-house.me-2
+              Home
+
+
+
+          %li
+            = link_to new_course_path,
+              class: "text-white-50 text-decoration-none footer-link" do
+              %i.bi.bi-plus-circle.me-2
+              = t("footer.links.teach")
+
+    %hr.border-secondary.my-4
+
+    / Copyright
+    .d-flex.flex-column.flex-md-row.justify-content-between.align-items-center.gap-2
+      %small.text-white-50
         ©
-        = Time.now.year
-        = t('footer.company')
-        .row
-        .fa.fa-envelope
-        = mail_to 'yashm@outlook.com'
-        .row
+        = Time.current.year
+        = t("footer.company")
 
-      .col-md-4
-        = t('footer.links.privacy_policy')
-        .row
-        = t('footer.links.terms')
-
-      .col-md-4
-        = t('footer.links.about')
-        .row
-        = link_to t('footer.links.teach'), new_course_path
-%br
+      %small.text-white-50
+        Feito com
+        %i.bi.bi-heart-fill.text-danger.mx-1
+        Ruby on Rails
