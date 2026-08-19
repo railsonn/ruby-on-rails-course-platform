@@ -9,7 +9,7 @@
       = notice
 
   / Breadcrumb
-  %nav.mb-4{"aria-label" => "breadcrumb"}
+  %nav.mb-4{ "aria-label" => "breadcrumb" }
     %ol.breadcrumb.mb-0
       %li.breadcrumb-item
         = link_to @lesson.course.title,
@@ -21,7 +21,7 @@
           course_lessons_path(@lesson.course),
           class: "text-decoration-none"
 
-      %li.breadcrumb-item.active{"aria-current" => "page"}
+      %li.breadcrumb-item.active{ "aria-current" => "page" }
         = @lesson.title
 
   / Cabeçalho
@@ -39,9 +39,8 @@
     .col-12.col-lg-9
       .card.border-0.shadow-sm.overflow-hidden
 
-        .card-header.border-0.text-white.p-4
-          style="background: linear-gradient(135deg, #0d6efd, #6610f2);"
-
+        / Cabeçalho do card
+        .card-header.border-0.text-white.p-4{ style: "background: linear-gradient(135deg, #0d6efd, #6610f2);" }
           .d-flex.align-items-center
             .bg-white.bg-opacity-25.rounded-circle.p-2.me-3
               %i.bi.bi-book-half.fs-5
@@ -53,16 +52,19 @@
               %h5.mb-0.fw-bold
                 = @lesson.course.title
 
+        / Conteúdo
         .card-body.p-4.p-md-5
-          = render @lesson
+          %p.text-muted.mb-0
+            = @lesson.content
 
+        / Ações
         .card-footer.border-0.p-4
           .d-flex.flex-column.flex-md-row.justify-content-between.gap-2
 
-            = link_to course_path(@lesson.course),
+            = link_to course_lessons_path(@lesson.course),
               class: "btn btn-outline-secondary rounded-pill px-4" do
               %i.bi.bi-arrow-left.me-2
-              = t("lessons.show.back_to_course")
+              = t("lessons.show.back_to_lessons")
 
             - if policy(@lesson).edit?
               = link_to edit_course_lesson_path(@lesson.course, @lesson),
